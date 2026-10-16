@@ -9,6 +9,7 @@ Thumbs.db
 # *.RData
 *.sqlite
 *.db
+README.html
 
 # Entorno y credenciales
 .Renviron

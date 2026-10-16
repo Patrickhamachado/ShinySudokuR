@@ -33,7 +33,7 @@ shinyUI(dashboardPage(
   dashboardSidebar(
     
     ## sidebarMenu ----
-    sidebarMenu(
+    bs4SidebarMenu(
       id = 'sidebar',
       
       ### Menu Play --------------
@@ -51,7 +51,7 @@ shinyUI(dashboardPage(
           # Botón Play
           actionBttn("play", label = "New Sudoku",
                      icon = icon("play-circle"),
-                     style = "minimal"
+                     style = "fill"
           )
         )
       ), # Fin div
@@ -82,7 +82,7 @@ shinyUI(dashboardPage(
     # Pestañas
     tabItems(
       
-      # Tab 1: Play ----
+      ## Tab 1: Play ----
       tabItem(tabName = "Play",
               fluidRow(
                 box(width = 10,
@@ -126,7 +126,7 @@ shinyUI(dashboardPage(
               
       ), # Fin Tab 1: Play
       
-      # Tab 2: Instructions ----
+      ## Tab 2: Instructions ----
       tabItem(tabName = "Instructions",
               # h2("Instructions tab content"),
               includeMarkdown("instructions.Rmd")
@@ -135,8 +135,19 @@ shinyUI(dashboardPage(
   ), # Fin dashboardBody
   
   
-  ## controlbar 
+  ## controlbar ----
   controlbar = bs4DashControlbar(
+    
+    selectInput("dificultad", "Difficulty:",
+                c("Very easy" = 16,
+                  "Easy" = 28,
+                  "Medium" = 41,
+                  "Hard" = 49,
+                  "Very hard" = 57),
+                selected = 41
+                ),
+    br(),
+    hr(),
     
     h3("Version: 0.0.1")
     

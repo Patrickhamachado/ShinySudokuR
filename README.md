@@ -8,9 +8,9 @@
 
     **TIP:** Pres a number in the keyboard to select it
 
-2. In the button "Action" select if you want to Fill or Mark
+2. In the button **`Action`** select if you want to Fill or Mark
 
-    **TIP:** Pres [Ctrl] or [Shift] in the keyboard to toggle the selection
+    **TIP:** Pres **`Ctrl`** or **`Shift`** in the keyboard to toggle the selection
 
 3. Click in the field you want to fill or mark with the selected number  
 

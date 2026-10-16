@@ -18,6 +18,18 @@ set.seed(Sys.time())
 sudoku <- generateSudoku(Nblank = 4, print.it = TRUE) # 42
 
 
+# Dificultad:
+# https://github.com/sepehr-rs/sudoku-engine
+
+# Difficulty guide:
+
+# Difficulty	Missing cells (9x9)	Approximate feel
+# 0.2	~16	Very easy
+# 0.35	~28	Easy
+# 0.5	~41	Medium
+# 0.6	~49	Hard
+# 0.7	~57	Very hard
+
 
 # Funciones ---------------------------------------------------------------
 
@@ -304,6 +316,13 @@ shinyServer(function(input, output, session) {
             }
         }
         
+    })
+    
+    
+    # The play button ----
+    observeEvent(input$play, {
+      cat(paste('Dificultad:', input$dificultad, "\n"))
+      
     })
     
     
