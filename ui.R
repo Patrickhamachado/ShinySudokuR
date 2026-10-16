@@ -149,7 +149,7 @@ shinyUI(dashboardPage(
     br(),
     hr(),
     
-    h3("Version: 0.0.1")
+    h3("Version: 0.0.2")
     
     # h1("Disfruta jugando Sudoku en Shiny!"),
     # h3("Instructions:"),

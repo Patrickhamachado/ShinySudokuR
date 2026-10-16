@@ -15,7 +15,7 @@ library(binaryLogic)
 
 # Generar Sudoku
 set.seed(Sys.time())
-sudoku <- generateSudoku(Nblank = 4, print.it = TRUE) # 42
+sudoku <- generateSudoku(Nblank = 16, print.it = TRUE) # 42
 
 
 # Dificultad:
