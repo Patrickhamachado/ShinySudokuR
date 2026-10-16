@@ -32,11 +32,11 @@ shinyUI(dashboardPage(
   # Sidebar ----
   dashboardSidebar(
     
-    # sidebarMenu ----
+    ## sidebarMenu ----
     sidebarMenu(
       id = 'sidebar',
       
-      # Menu Play --------------
+      ### Menu Play --------------
       menuItem("Game", 
                tabName = 'Play', 
                icon = icon('gamepad') ),
@@ -65,7 +65,7 @@ shinyUI(dashboardPage(
     
   ),
   
-  # dashboardBody ----
+  ## dashboardBody ----
   dashboardBody(
     
     # Keyboard pressed script
@@ -133,6 +133,34 @@ shinyUI(dashboardPage(
       ) # Fin Tab 2: Instructions
     ) # Fin tabItems
   ), # Fin dashboardBody
+  
+  
+  ## controlbar 
+  controlbar = bs4DashControlbar(
+    
+    h3("Version: 0.0.1")
+    
+    # h1("Disfruta jugando Sudoku en Shiny!"),
+    # h3("Instructions:"),
+    # li("Select the number you want to use for filling or marking in the upper selection buttons"),
+    # p("**TIP:** Pres a number in the keyboard to select it"),
+    # 
+    # li("In the button `Action` select if you want to Fill or Mark"),
+    # p("**TIP:** Pres [Ctrl] or [Shift] in the keyboard to toggle the selection"),
+    # 
+    # li("Click in the field you want to fill or mark with the selected number"),  
+    # 
+    # li("Enjoy!")
+    
+    
+    # id = NULL,
+    # disable = FALSE,
+    # width = 250,
+    # collapsed = TRUE,
+    # overlay = TRUE,
+    # skin = NULL,
+    # pinned = NULL
+  )
   
   # Otros parámetros dashboardPage ----
   # skin = "red", # "blue", "blue-light", "black", "black-light",
