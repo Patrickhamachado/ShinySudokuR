@@ -1,6 +1,6 @@
 
 # Enjoy playing Sudoku in Shiny!
-[Connect Cloud App]([https://duckduckgo.com](https://01a146b3-8a06-bb54-5bbd-2b85de794f48.share.connect.posit.cloud/))
+[Connect Cloud App](https://duckduckgo.com](https://01a146b3-8a06-bb54-5bbd-2b85de794f48.share.connect.posit.cloud/)
 
 ### Instructions:
 
