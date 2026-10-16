@@ -1,6 +1,6 @@
 
 # Enjoy playing Sudoku in Shiny!
-[Connect Cloud App](https://01a146b3-8a06-bb54-5bbd-2b85de794f48.share.connect.posit.cloud/)
+[Connect Cloud App](https://patrickhamachado-shinysudokur.share.connect.posit.cloud)
 
 ### Instructions:
 
