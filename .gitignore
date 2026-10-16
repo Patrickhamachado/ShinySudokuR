@@ -1,0 +1,30 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Datos y archivos sensibles
+*.csv
+*.xlsx
+*.rds
+# *.RData
+*.sqlite
+*.db
+
+# Entorno y credenciales
+.Renviron
+.env
+credentials/
+
+# Salidas temporales
+output/
+www/tmp/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Historial de RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
