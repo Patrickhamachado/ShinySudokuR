@@ -22,7 +22,6 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
   # print("posibles")
   # print(posibles)
   
-  
   # Corroborar si el Sudoku está vacío
   suma_columnas <- colSums(problema)
   suma_filas <- rowSums(problema)
@@ -36,8 +35,6 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
     fin = c(6.2, 6.2)
     ) 
   plot(0.5:27.5, 0.5:27.5, type = "n", axes = FALSE, xlab = "", ylab = "")
-  # cusr <<- par("usr")
-  # cplt <<- par("plt")
   
   # Dibujar el marco
   if(isTRUE(vacio)) {
@@ -71,8 +68,13 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
   }
   
   # Dibujar el problema
-  mat_colores = ifelse(problema, color_problema, "black")
-
+  if(isTRUE(terminado)) {
+    mat_colores <- matrix(color_problema, 9, 9)
+  } else {
+    mat_colores <- ifelse(problema, color_problema, "black")
+  }
+  
+  # Llenadado de la gráfica
   for (fila in 1:9) for (columna in 1:9) {
     
     # Dibujar la solucion
@@ -110,4 +112,7 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
 # fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
 #                matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
 #                matrix(c(7, rep(0, 8)), 9, 9, byrow = TRUE))
-# fx_plot_sudoku(generateSudoku(print.it = TRUE))
+# ss1 <- generateSudoku()
+# fx_plot_sudoku(ss1)
+# fx_plot_sudoku(ss1, solveSudoku(ss1))
+# fx_plot_sudoku(ss1, solveSudoku(ss1), terminado = TRUE)

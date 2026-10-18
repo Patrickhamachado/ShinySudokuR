@@ -197,13 +197,17 @@ ss2
 # makeGame(n = 4)
 
 # Mostrar juego original
-originalGame(ss)
+originalGame(ss2)
 
 # Imprimir Sudoku cómo gráfico
 plot(as.sudoku(ss1))
 plot(ss2)
 
-plot(ss1, colGame = "#808080", colSolution = "blue")
+ss3 <- solveGame(ss2)
+plot(ss2)
+plot(ss3)
+plot(ss2, colGame = "#808080", colSolution = "blue")
+plot(ss3, colGame = "#808080", colSolution = "blue")
 
 # Imprimir Sudoku en consola
 print(ss1)
@@ -212,7 +216,15 @@ printSudoku(ss1)
 print(ss2)
 
 
+# Original game
+originalGame(ss3)
 
+# regulariseGame
+ss3
+regulariseGame(ss3)
+regulariseGame(ss3, "col")
+regulariseGame(ss3, "row")
+regulariseGame(ss3, "row") |> originalGame()
 
 
 # Libreria tcltk ------------------------------------------------------------
