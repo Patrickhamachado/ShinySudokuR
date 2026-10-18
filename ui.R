@@ -7,7 +7,7 @@ library(shiny)
 library(bslib)
 # library(bs4Dash)
 # library(markdown)
-# library(shinyWidgets)
+library(shinyWidgets)
 
 
 # UI ----------------------------------------------------------------------
