@@ -6,6 +6,7 @@
 library(shiny)
 library(bslib)
 library(shinyWidgets)
+library(markdown)
 
 
 # UI ----------------------------------------------------------------------
