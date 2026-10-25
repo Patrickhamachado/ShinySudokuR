@@ -106,7 +106,9 @@ shinyServer(function(input, output, session) {
               posibles[llenar_fila, llenar_columna] <- actual
               
               # Actualizar el valor reactivo si hubo cambios
-              if(!identical(posibles_actual, solucion)) sudoku_posibles(posibles)
+              if(!identical(posibles_actual, posibles)) {
+                sudoku_posibles(posibles)
+              } 
               
             } # Fin marcar si no hay número fijo
             
@@ -175,9 +177,9 @@ shinyServer(function(input, output, session) {
       
       # Revisar si ya se empezó a resolver el juego
       solucion_inicida <- !identical(sudoku_problema(), sudoku_solucion())
-      posibles_inicidos <- !identical(sudoku_posibles(), matrix(0, 9, 9))
+      posibles_iniciados <- !identical(sudoku_posibles(), matrix(0, 9, 9))
       problema_vacio <- identical(sudoku_problema(), matrix(0, 9, 9))
-      if((isFALSE(sudoku_resuelto()) & (solucion_inicida | posibles_inicidos)) &
+      if((isFALSE(sudoku_resuelto()) & (solucion_inicida | posibles_iniciados)) &
          !problema_vacio) {
         
         confirmSweetAlert(
@@ -205,7 +207,7 @@ shinyServer(function(input, output, session) {
       }
     })
     
-    ## observeEvent confirmar_nuevo
+    # observeEvent confirmar_nuevo ----
     observeEvent(input$confirmar_nuevo, {
       
       if (isTRUE(input$confirmar_nuevo)) {

@@ -74,16 +74,20 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
     mat_colores <- ifelse(problema, color_problema, "black")
   }
   
-  # Llenadado de la gráfica
+  # Llenado de la gráfica
   for (fila in 1:9) for (columna in 1:9) {
     
     # Dibujar la solucion
     if (solucion[fila, columna]) {
       
-      if (mat_colores[fila, columna] == color_error) 
-        text(3 * columna - 1, 30 - (3*fila + 1), "X", 
-             col = "pink", cex = 3)
-      text(3 * columna - 1, 30 - (3*fila + 1), solucion[fila, columna], 
+      xx <- 3 * columna - 1
+      yy <- 30 - (3 * fila + 1)
+      
+      if (mat_colores[fila, columna] == color_error) {
+        text(xx, yy, "X", col = "pink", cex = 3)
+      }
+        
+      text(xx, yy, solucion[fila, columna], 
            col = mat_colores[fila, columna], 
            font = ifelse(mat_colores[fila, columna] == color_problema, 2, 1), 
            cex = ifelse(mat_colores[fila, columna] == color_problema, 2.4, 2.2)) #2 - 1.8
@@ -111,7 +115,7 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
 # fx_plot_sudoku()
 # fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
 #                matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
-#                matrix(c(7, rep(0, 8)), 9, 9, byrow = TRUE))
+#                matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE))
 # ss1 <- generateSudoku()
 # fx_plot_sudoku(ss1)
 # fx_plot_sudoku(ss1, solveSudoku(ss1))

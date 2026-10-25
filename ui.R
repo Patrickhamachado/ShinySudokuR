@@ -17,7 +17,7 @@ page_navbar(
             # Keyboard pressed script
             tags$script('
       $(document).on("keyup", function (e) {
-         Shiny.onInputChange("myKeyboard", [e.which,e.timeStamp]);
+         Shiny.onInputChange("myKeyboard", [e.which, e.timeStamp]);
       });
                   '
             ),
