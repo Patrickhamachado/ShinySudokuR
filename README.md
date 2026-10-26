@@ -1,5 +1,5 @@
 
-# Enjoy playing Sudoku in Shiny!
+# Enjoy playing Sudoku in Shiny for R!
 [Connect Cloud App](https://patrickhamachado-shinysudokur.share.connect.posit.cloud)
 
 ### Instructions:
