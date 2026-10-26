@@ -20,9 +20,6 @@ credentials/
 output/
 www/tmp/
 
-# Archivos de sistema
-.DS_Store
-Thumbs.db
 
 # Historial de RStudio
 .Rproj.user/
