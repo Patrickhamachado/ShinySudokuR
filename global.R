@@ -13,9 +13,11 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
                            solucion = problema,
                            posibles = matrix(0, 9, 9),
                            terminado = FALSE,
+                           num_resaltar = 1,
                            color_problema = "blue",
-                           color_error = "red"
-                           ) {
+                           color_error = "red",
+                           color_fondo = "turquoise"
+) {
   
   # print("solucion")
   # print(solucion)
@@ -33,7 +35,7 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
     mar = c(0, 0, 0, 0),   
     # Dimensiones en pulgadas
     fin = c(6.2, 6.2)
-    ) 
+  ) 
   plot(0.5:27.5, 0.5:27.5, type = "n", axes = FALSE, xlab = "", ylab = "")
   
   # Dibujar el marco
@@ -83,14 +85,23 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
       xx <- 3 * columna - 1
       yy <- 30 - (3 * fila + 1)
       
+      # Marco si corresponde al número a resaltar
+      if (solucion[fila, columna] == num_resaltar) {
+        # print(paste("Resaltar", num_resaltar, "en", fila, ",", columna))
+        rect(xx - 1.5, yy - 1.5, xx + 1.5, yy + 1.5, col = color_fondo,
+             lwd = 3)
+      }
+      
+      
       if (mat_colores[fila, columna] == color_error) {
         text(xx, yy, "X", col = "pink", cex = 3)
       }
-        
+      
       text(xx, yy, solucion[fila, columna], 
            col = mat_colores[fila, columna], 
            font = ifelse(mat_colores[fila, columna] == color_problema, 2, 1), 
            cex = ifelse(mat_colores[fila, columna] == color_problema, 2.4, 2.2)) #2 - 1.8
+      
     } else { 
       
       # Marcar  los números posibles
@@ -100,10 +111,22 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
       for (bit_posible in 1:9) {
         # Números posibles
         if (actual[bit_posible]) {
-          text(ifelse(bit_posible %% 3 > 0, columna * 3 - 3 + (bit_posible %% 3), 
-                      columna * 3),
-               (10 - fila) * 3 - floor((bit_posible - 1) / 3), 
-               bit_posible, font = 1, cex = 0.9)
+          
+          xxx <- ifelse(bit_posible %% 3 > 0, columna * 3 - 3 + (bit_posible %% 3), 
+                      columna * 3)
+          yyy <- (10 - fila) * 3 - floor((bit_posible - 1) / 3)
+          
+          
+          # Marco chico si corresponde al número a resaltar
+          if (bit_posible == num_resaltar) {
+            # print(paste("Resaltar posible", num_resaltar, "en", fila, ",", 
+            #             columna, "x:", xxx, ", y:", yyy))
+            rect(xxx - 0.45, yyy - 0.45, xxx + 0.45, yyy + 0.45, col = color_fondo,
+                 border = NA)
+          }
+          
+          text(xxx, yyy, bit_posible, font = 1, cex = 0.9)
+          
         } # Fin si es necesario el número
       } # Fin marcar de 1 a 9
     } # Fin llenado múmeros posibles
@@ -115,8 +138,36 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
 # fx_plot_sudoku()
 # fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
 #                matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
-#                matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE))
+#                matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE),
+#                FALSE, 1)
 # ss1 <- generateSudoku()
 # fx_plot_sudoku(ss1)
 # fx_plot_sudoku(ss1, solveSudoku(ss1))
 # fx_plot_sudoku(ss1, solveSudoku(ss1), terminado = TRUE)
+
+
+## 1.1 fx_faltan ----
+#' Encuentra cuantas apariciones de cada número faltan por llenar en el Sudoku
+#' 
+#' @param solucion Matriz 9x9 con la solución al Sudoku
+#' @returns Vector con el número de faltantes del 1 al 9
+#' @examples
+#' fx_faltan()
+#' fx_faltan(generateSudoku())
+#' fx_faltan(matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE))
+#' 
+fx_faltan <- function(solucion = matrix(0, 9, 9)) {
+  faltan <- rep(9, 9)
+  for (digito in 1:9) {
+    faltan[digito] <- 9 - sum(solucion == digito)
+  }
+  
+  # print(paste("Faltan:", paste(faltan, collapse = ", ")))
+  faltan
+}
+
+# Test 
+# fx_faltan()
+# fx_faltan(generateSudoku())
+# fx_faltan(matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE))
+

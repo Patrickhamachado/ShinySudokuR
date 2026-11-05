@@ -29,6 +29,7 @@ shinyServer(function(input, output, session) {
     sudoku_solucion <- reactiveVal(matrix(0, 9, 9))
     sudoku_posibles <- reactiveVal(matrix(0, 9, 9))
     sudoku_resuelto <- reactiveVal(FALSE)
+    faltan <- reactiveVal(rep(9, 9))
     
     
     # observeEvent plot_click ----
@@ -75,7 +76,8 @@ shinyServer(function(input, output, session) {
             # Actualizar el valor reactivo si hubo cambios
             if(!identical(solucion_actual, solucion)) {
               sudoku_solucion(solucion)
-              
+              faltan(fx_faltan(solucion))
+               
               # Corroborar si ya está solucionado o está vacío
               suma_columnas <- colSums(solucion)
               suma_filas <- rowSums(solucion)
@@ -126,7 +128,7 @@ shinyServer(function(input, output, session) {
         {
         # Llamar función Plot
         fx_plot_sudoku(sudoku_problema(), sudoku_solucion(), sudoku_posibles(), 
-                       sudoku_resuelto())
+                       sudoku_resuelto(), as.integer(input$fill))
         
     }) # Fin renderPlot output
     
@@ -199,6 +201,7 @@ shinyServer(function(input, output, session) {
         sudoku_solucion(sudoku_problema())
         sudoku_posibles(matrix(0, 9, 9))
         sudoku_resuelto(FALSE)
+        faltan(fx_faltan(sudoku_problema()))
         showNotification("Enjoy your Sudoku!", type = "message")
         # shinyWidgets::show_toast("Enjoy your Sudoku!", type = "success")
         
@@ -216,8 +219,29 @@ shinyServer(function(input, output, session) {
         sudoku_solucion(sudoku_problema())
         sudoku_posibles(matrix(0, 9, 9))
         sudoku_resuelto(FALSE)
+        faltan(fx_faltan(sudoku_problema()))
         showNotification("Enjoy your new Sudoku!", type = "message")
       }
+      
+    })
+    
+    # observe faltan() ----
+    observe({
+      
+      rotulos <- paste0(1:9, " (", faltan(), ")")
+      valor <- isolate(input$fill)
+      
+      updateRadioGroupButtons(
+        session = session,
+        inputId = "fill",
+        label = "Fill/mark with:",
+        # choices = 1:9,
+        selected = valor, 
+        status = "primary",
+        checkIcon = list(yes = icon("ok", lib = "glyphicon")),
+        choiceNames = rotulos,
+        choiceValues = 1:9
+      )
       
     })
     

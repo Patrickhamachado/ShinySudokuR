@@ -60,12 +60,12 @@ page_navbar(
             radioGroupButtons(
               inputId = "fill",
               label = "Fill/mark with:",
-              choices = 1:9,
+              # choices = 1:9,
               selected = 1, 
               status = "primary",
-              checkIcon = list(
-                yes = icon("ok", 
-                           lib = "glyphicon"))
+              checkIcon = list(yes = icon("ok", lib = "glyphicon")),
+              choiceNames = paste(1:9, "(0)"),
+              choiceValues = 1:9
             ),
             
             # Plot Sudoku
