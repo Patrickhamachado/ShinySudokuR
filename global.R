@@ -129,77 +129,28 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
   } # Fin recorrido de la matriz 9x9
   
   # Revisión de números incorrectos
-  mat_colores <- ifelse(problema, color_problema, color_error)
-  for (numero in 1:9) {
-    
-    # Revisión de filas
-    for (fila in 1:9) {
-      
-      repetidos <- sum(solucion[fila, ] == numero)
-      
-      if (repetidos > 1) {
-        
-        columna <- which(solucion[fila, ] == numero)
-        xx <- columna * 3 - 1
-        yy <- rep(29 - 3 * fila, length(xx))
-        # Colores
-        colores <- mat_colores[fila, columna]
-        
-        # Circulo
-        points(xx, yy, col = colores, cex = 7, lwd = 3)
-        
-      }
+  repetidos <- fx_repetidos(problema, solucion)
+  if (nrow(repetidos) > 0) {
+    for (fila in 1:nrow(repetidos)) {
+      points(repetidos[fila, xx], repetidos[fila, yy], 
+             col = repetidos[fila, color], cex = 7, lwd = 3)
     }
-    
-    # Revisión de columnas
-    for (columna in 1:9) {
-      
-      repetidos <- sum(solucion[, columna] == numero)
-      
-      if (repetidos > 1) {
-        
-        fila <- which(solucion[, columna] == numero)
-        yy <- 29 - 3 * fila
-        xx <- rep(columna * 3 - 1, length(yy))
-        
-        # Colores
-        colores <- mat_colores[fila, columna]
-      
-        # Circulo
-        points(xx, yy, col = colores, cex = 7, lwd = 3)
-   
-      }
-    }
-    
-    
-    # Llenado de los números de la solución
-    # text(xx, yy, solucion[fila, columna], 
-    #      col = mat_colores[fila, columna], 
-    #      font = ifelse(mat_colores[fila, columna] == color_problema, 2, 1), 
-    #      cex = ifelse(mat_colores[fila, columna] == color_problema, 2.4, 2.2)) #2 - 1.8
-    
-    
   }
-  
-  
-  
-  
-  
 }
 
 # Test
 # fx_plot_sudoku()
-fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
-               matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
-               matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE),
-               FALSE, 1)
+# fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
+#                matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
+#                matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE),
+#                FALSE, 1)
 # ss1 <- generateSudoku()
 # fx_plot_sudoku(ss1)
 # fx_plot_sudoku(ss1, solveSudoku(ss1))
 # fx_plot_sudoku(ss1, solveSudoku(ss1), terminado = TRUE)
 
 
-## 1.1 fx_faltan ----
+## 1.2 fx_faltan ----
 #' Encuentra cuantas apariciones de cada número faltan por llenar en el Sudoku
 #' 
 #' @param solucion Matriz 9x9 con la solución al Sudoku
@@ -223,4 +174,82 @@ fx_faltan <- function(solucion = matrix(0, 9, 9)) {
 # fx_faltan()
 # fx_faltan(generateSudoku())
 # fx_faltan(matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE))
+
+
+## 1.3 fx_repetidos ----
+#' Encuentra números repetidos en filas, columnas o casillas
+#' 
+#' @param problema Matriz 9x9 con el Sudoku problema
+#' @param solucion Matriz 9x9 con la solución al Sudoku
+#' @param color_problema Color para los círculos correctos
+#' @param color_error Color para los círculos en conflicto
+#' @returns data.table con las coordenadas y colores de los círculos a dibujar
+#' @examples
+#' fx_repetidos()
+#' fx_repetidos(generateSudoku())
+#' fx_repetidos()
+#' fx_repetidos(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE), 
+#' matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE))
+
+#' 
+fx_repetidos <- function(problema = matrix(0, 9, 9),
+                         solucion = problema,
+                         color_problema = "blue",
+                         color_error = "red"
+) {
+  
+  # Matriz base
+  repetidos <- data.table(filas = rep(1:9, each = 9),
+                          columnas = rep(1:9, 9),
+                          casillas = c(rep(rep(1:3, each = 3), 3), 
+                                       rep(rep(4:6, each = 3), 3), 
+                                       rep(rep(7:9, each = 3), 3)),
+                          color = color_error,
+                          numeros = 0,
+                          cierto = 0
+  )
+  
+  # Llenado de la matriz
+  for (fila in 1:9) {
+    for (columna in 1:9) {
+      repetidos[filas == fila & columnas == columna, `:=` (
+        numeros = solucion[fila, columna], cierto = problema[fila, columna]
+      )]
+    }
+  }
+  repetidos[cierto > 0, color := color_problema]
+  repetidos <- repetidos[numeros > 0]
+  
+  final <- data.table(filas = integer(0), columnas = integer(0), 
+                      color = character(0))
+  
+  # Loop de números del 1 al 9
+  for (numero in 1:9) {
+    # Loop de columnas del 1 al 3: filas, columnas, casillas
+    for (grupo in 1:3) {
+      
+      grupos <- unlist(repetidos[, ..grupo])
+      repetidos_numero <- repetidos[, .(filas, columnas, grupos = grupos,
+                                        color, numeros)]
+      # Loop de revisión del grupo 1 al 9
+      for (grupo in 1:9) {
+        repetidos_grupo <- repetidos_numero[grupos == grupo & numeros == numero]
+        
+        if (nrow(repetidos_grupo) > 1) {
+          final <- rbind(final, repetidos_grupo[, .(filas, columnas, color)])
+        } 
+      }
+    }
+  }
+  
+  # Calculo de coordenadas
+  final <- unique(final[])
+  final[, .(filas, columnas, color, xx = columnas * 3 - 1, 
+            yy = 29 - 3 * filas)]
+  
+}
+
+# fx_repetidos()
+fx_repetidos(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
+             matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE))
 
