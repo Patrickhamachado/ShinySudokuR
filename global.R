@@ -4,6 +4,7 @@
 
 library(sudoku)
 library(binaryLogic)
+library(data.table)
 
 
 # 1. Funciones ------------------------------------------------------------

@@ -5,6 +5,7 @@ library(shiny)
 library(shinyWidgets)
 library(sudoku)
 library(binaryLogic)
+library(data.table)
 
 
 # Dificultad:
