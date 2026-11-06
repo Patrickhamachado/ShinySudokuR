@@ -236,3 +236,7 @@ demo(tcltk::tkfaq)
 demo(tcltk::tkttest)
 
 
+
+# Actualización manifest --------------------------------------------------
+
+rsconnect::writeManifest(appDir = ".")
