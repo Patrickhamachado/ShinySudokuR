@@ -92,11 +92,7 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
              lwd = 3)
       }
       
-      
-      if (mat_colores[fila, columna] == color_error) {
-        text(xx, yy, "X", col = "pink", cex = 3)
-      }
-      
+      # Llenado de los números de la solución
       text(xx, yy, solucion[fila, columna], 
            col = mat_colores[fila, columna], 
            font = ifelse(mat_colores[fila, columna] == color_problema, 2, 1), 
@@ -132,14 +128,71 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
     } # Fin llenado múmeros posibles
   } # Fin recorrido de la matriz 9x9
   
+  # Revisión de números incorrectos
+  mat_colores <- ifelse(problema, color_problema, color_error)
+  for (numero in 1:9) {
+    
+    # Revisión de filas
+    for (fila in 1:9) {
+      
+      repetidos <- sum(solucion[fila, ] == numero)
+      
+      if (repetidos > 1) {
+        
+        columna <- which(solucion[fila, ] == numero)
+        xx <- columna * 3 - 1
+        yy <- rep(29 - 3 * fila, length(xx))
+        # Colores
+        colores <- mat_colores[fila, columna]
+        
+        # Circulo
+        points(xx, yy, col = colores, cex = 7, lwd = 3)
+        
+      }
+    }
+    
+    # Revisión de columnas
+    for (columna in 1:9) {
+      
+      repetidos <- sum(solucion[, columna] == numero)
+      
+      if (repetidos > 1) {
+        
+        fila <- which(solucion[, columna] == numero)
+        yy <- 29 - 3 * fila
+        xx <- rep(columna * 3 - 1, length(yy))
+        
+        # Colores
+        colores <- mat_colores[fila, columna]
+      
+        # Circulo
+        points(xx, yy, col = colores, cex = 7, lwd = 3)
+   
+      }
+    }
+    
+    
+    # Llenado de los números de la solución
+    # text(xx, yy, solucion[fila, columna], 
+    #      col = mat_colores[fila, columna], 
+    #      font = ifelse(mat_colores[fila, columna] == color_problema, 2, 1), 
+    #      cex = ifelse(mat_colores[fila, columna] == color_problema, 2.4, 2.2)) #2 - 1.8
+    
+    
+  }
+  
+  
+  
+  
+  
 }
 
 # Test
 # fx_plot_sudoku()
-# fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
-#                matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
-#                matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE),
-#                FALSE, 1)
+fx_plot_sudoku(matrix(c(1:9, rep(0, 72)), 9, 9, byrow = TRUE),
+               matrix(c(1:9, 9:1, rep(0, 54), 1:9), 9, 9, byrow = TRUE),
+               matrix(c(273, rep(0, 8)), 9, 9, byrow = TRUE),
+               FALSE, 1)
 # ss1 <- generateSudoku()
 # fx_plot_sudoku(ss1)
 # fx_plot_sudoku(ss1, solveSudoku(ss1))
