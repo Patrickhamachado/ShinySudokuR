@@ -3,7 +3,6 @@
 # Librerias ---------------------------------------------------------------
 
 library(sudoku)
-library(binaryLogic)
 library(data.table)
 
 
@@ -102,8 +101,7 @@ fx_plot_sudoku <- function(problema = matrix(0, 9, 9),
     } else { 
       
       # Marcar  los números posibles
-      actual <- as.binary(posibles[fila, columna], 
-                          littleEndian = TRUE, n = 9)
+      actual <- as.integer(intToBits(posibles[fila, columna])[1:9])
       
       for (bit_posible in 1:9) {
         # Números posibles

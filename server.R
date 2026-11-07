@@ -4,7 +4,6 @@
 library(shiny)
 library(shinyWidgets)
 library(sudoku)
-library(binaryLogic)
 library(data.table)
 
 
@@ -102,10 +101,11 @@ shinyServer(function(input, output, session) {
             if(solucion[llenar_fila, llenar_columna] == 0) {
               
               # Editar la matriz de números opcionados
-              actual <- as.binary(posibles[llenar_fila, llenar_columna],
-                                  littleEndian = TRUE, n = 9)
+              actual <- as.integer(
+                intToBits(posibles[llenar_fila, llenar_columna])[1:9])
               actual[llenar_con] <- ! actual[llenar_con]
-              actual <- sum(2 ^ ((1:9)[actual] - 1))
+              actual <- sum(2 ^ ((1:9)[as.logical(actual)] - 1))
+              
               posibles[llenar_fila, llenar_columna] <- actual
               
               # Actualizar el valor reactivo si hubo cambios
