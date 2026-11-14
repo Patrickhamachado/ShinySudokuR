@@ -69,8 +69,21 @@ page_navbar(
             ),
             
             # Plot Sudoku
-            uiOutput("plotui")
-
+            # uiOutput("plotui")
+            plotOutput("plotSudoku", click = "plot_click")
+            
+            # Pruebas de reactividad ----
+            # Botón mas1
+            # actionBttn("mas1", label = "+1",
+            #            icon = icon("play-circle"),
+            #            style = "fill"
+            # ),
+            # Botón mas0
+            # actionBttn("mas0", label = "==",
+            #            icon = icon("play-circle"),
+            #            style = "fill"
+            # )
+            
             
             ), # Fin panel Game 
   

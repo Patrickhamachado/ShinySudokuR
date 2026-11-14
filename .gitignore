@@ -10,6 +10,7 @@ Thumbs.db
 *.sqlite
 *.db
 README.html
+como_publicar.R
 
 # Entorno y credenciales
 .Renviron

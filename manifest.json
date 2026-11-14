@@ -335,39 +335,6 @@
         "RemoteSha.Version": "8.1.0"
       }
     },
-    "data.table": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com",
-      "description": {
-        "Package": "data.table",
-        "Version": "1.18.6.1",
-        "Title": "Extension of `data.frame`",
-        "Depends": "R (>= 3.4.0)",
-        "Imports": "methods",
-        "Suggests": "bit64 (>= 4.0.0), bit (>= 4.0.4), R.utils (>= 2.13.0), xts,\nzoo (>= 1.8-1), yaml, knitr, markdown",
-        "Description": "Fast aggregation of large data (e.g. 100GB in RAM), fast ordered joins, fast add/modify/delete of columns by group using no copies at all, list columns, friendly and fast character-separated-value read/write. Offers a natural and flexible syntax, for faster development.",
-        "License": "MPL-2.0 | file LICENSE",
-        "URL": "https://r-datatable.com, https://Rdatatable.gitlab.io/data.table,\nhttps://github.com/Rdatatable/data.table",
-        "BugReports": "https://github.com/Rdatatable/data.table/issues",
-        "VignetteBuilder": "knitr",
-        "Encoding": "UTF-8",
-        "ByteCompile": "TRUE",
-        "Authors@R": "c(\n  person(\"Tyson\",\"Barrett\",        role=c(\"aut\",\"cre\"), email=\"t.barrett88@gmail.com\", comment = c(ORCID=\"0000-0002-2137-1391\")),\n  person(\"Matt\",\"Dowle\",           role=\"aut\",          email=\"mattjdowle@gmail.com\"),\n  person(\"Arun\",\"Srinivasan\",      role=\"aut\",          email=\"asrini@pm.me\"),\n  person(\"Jan\",\"Gorecki\",          role=\"aut\",          email=\"j.gorecki@wit.edu.pl\"),\n  person(\"Michael\",\"Chirico\",      role=\"aut\",          email=\"michaelchirico4@gmail.com\", comment = c(ORCID=\"0000-0003-0787-087X\")),\n  person(\"Toby\",\"Hocking\",         role=\"aut\",          email=\"toby.hocking@r-project.org\", comment = c(ORCID=\"0000-0002-3146-0865\")),\n  person(\"Benjamin\",\"Schwendinger\",role=\"aut\", comment = c(ORCID=\"0000-0003-3315-8114\")),\n  person(\"Ivan\", \"Krylov\",         role=\"aut\",          email=\"ikrylov@disroot.org\",   comment = c(ORCID=\"0000-0002-0172-3812\")),\n  person(\"Pasha\",\"Stetsenko\",      role=\"ctb\"),\n  person(\"Tom\",\"Short\",            role=\"ctb\"),\n  person(\"Steve\",\"Lianoglou\",      role=\"ctb\"),\n  person(\"Eduard\",\"Antonyan\",      role=\"ctb\"),\n  person(\"Markus\",\"Bonsch\",        role=\"ctb\"),\n  person(\"Hugh\",\"Parsonage\",       role=\"ctb\"),\n  person(\"Scott\",\"Ritchie\",        role=\"ctb\"),\n  person(\"Kun\",\"Ren\",              role=\"ctb\"),\n  person(\"Xianying\",\"Tan\",         role=\"ctb\"),\n  person(\"Rick\",\"Saporta\",         role=\"ctb\"),\n  person(\"Otto\",\"Seiskari\",        role=\"ctb\"),\n  person(\"Xianghui\",\"Dong\",        role=\"ctb\"),\n  person(\"Michel\",\"Lang\",          role=\"ctb\"),\n  person(\"Watal\",\"Iwasaki\",        role=\"ctb\"),\n  person(\"Seth\",\"Wenchel\",         role=\"ctb\"),\n  person(\"Karl\",\"Broman\",          role=\"ctb\"),\n  person(\"Tobias\",\"Schmidt\",       role=\"ctb\"),\n  person(\"David\",\"Arenburg\",       role=\"ctb\"),\n  person(\"Ethan\",\"Smith\",          role=\"ctb\"),\n  person(\"Francois\",\"Cocquemas\",   role=\"ctb\"),\n  person(\"Matthieu\",\"Gomez\",       role=\"ctb\"),\n  person(\"Philippe\",\"Chataignon\",  role=\"ctb\"),\n  person(\"Nello\",\"Blaser\",         role=\"ctb\"),\n  person(\"Dmitry\",\"Selivanov\",     role=\"ctb\"),\n  person(\"Andrey\",\"Riabushenko\",   role=\"ctb\"),\n  person(\"Cheng\",\"Lee\",            role=\"ctb\"),\n  person(\"Declan\",\"Groves\",        role=\"ctb\"),\n  person(\"Daniel\",\"Possenriede\",   role=\"ctb\"),\n  person(\"Felipe\",\"Parages\",       role=\"ctb\"),\n  person(\"Denes\",\"Toth\",           role=\"ctb\"),\n  person(\"Mus\",\"Yaramaz-David\",    role=\"ctb\"),\n  person(\"Ayappan\",\"Perumal\",      role=\"ctb\"),\n  person(\"James\",\"Sams\",           role=\"ctb\"),\n  person(\"Martin\",\"Morgan\",        role=\"ctb\"),\n  person(\"Michael\",\"Quinn\",        role=\"ctb\"),\n  person(given=\"@javrucebo\",       role=\"ctb\", comment=\"GitHub user\"),\n  person(\"Marc\",\"Halperin\",        role=\"ctb\"),\n  person(\"Roy\",\"Storey\",           role=\"ctb\"),\n  person(\"Manish\",\"Saraswat\",      role=\"ctb\"),\n  person(\"Morgan\",\"Jacob\",         role=\"ctb\"),\n  person(\"Michael\",\"Schubmehl\",    role=\"ctb\"),\n  person(\"Davis\",\"Vaughan\",        role=\"ctb\"),\n  person(\"Leonardo\",\"Silvestri\",   role=\"ctb\"),\n  person(\"Jim\",\"Hester\",           role=\"ctb\"),\n  person(\"Anthony\",\"Damico\",       role=\"ctb\"),\n  person(\"Sebastian\",\"Freundt\",    role=\"ctb\"),\n  person(\"David\",\"Simons\",         role=\"ctb\"),\n  person(\"Elliott\",\"Sales de Andrade\", role=\"ctb\"),\n  person(\"Cole\",\"Miller\",          role=\"ctb\"),\n  person(\"Jens Peder\",\"Meldgaard\", role=\"ctb\"),\n  person(\"Vaclav\",\"Tlapak\",        role=\"ctb\"),\n  person(\"Kevin\",\"Ushey\",          role=\"ctb\"),\n  person(\"Dirk\",\"Eddelbuettel\",    role=\"ctb\"),\n  person(\"Tony\",\"Fischetti\",       role=\"ctb\"),\n  person(\"Ofek\",\"Shilon\",          role=\"ctb\"),\n  person(\"Vadim\",\"Khotilovich\",    role=\"ctb\"),\n  person(\"Hadley\",\"Wickham\",       role=\"ctb\"),\n  person(\"Bennet\",\"Becker\",        role=\"ctb\"),\n  person(\"Kyle\",\"Haynes\",          role=\"ctb\"),\n  person(\"Boniface Christian\",\"Kamgang\", role=\"ctb\"),\n  person(\"Olivier\",\"Delmarcell\",   role=\"ctb\"),\n  person(\"Josh\",\"O'Brien\",         role=\"ctb\"),\n  person(\"Dereck\",\"Mezquita\",      role=\"ctb\", comment = c(ORCID=\"0000-0002-9307-6762\")),\n  person(\"Michael\",\"Czekanski\",    role=\"ctb\"),\n  person(\"Dmitry\", \"Shemetov\",     role=\"ctb\"),\n  person(\"Nitish\", \"Jha\",          role=\"ctb\"),\n  person(\"Joshua\", \"Wu\",           role=\"ctb\"),\n  person(\"Iago\", \"Giné-Vázquez\",   role=\"ctb\"),\n  person(\"Anirban\", \"Chetia\",      role=\"ctb\"),\n  person(\"Doris\", \"Amoakohene\",    role=\"ctb\"),\n  person(\"Angel\", \"Feliz\",         role=\"ctb\"),\n  person(\"Michael\",\"Young\",        role=\"ctb\"),\n  person(\"Mark\", \"Seeto\",          role=\"ctb\"),\n  person(\"Philippe\", \"Grosjean\",   role=\"ctb\"),\n  person(\"Vincent\", \"Runge\",       role=\"ctb\"),\n  person(\"Christian\", \"Wia\",       role=\"ctb\"),\n  person(\"Elise\", \"Maigné\",        role=\"ctb\"),\n  person(\"Vincent\", \"Rocher\",      role=\"ctb\"),\n  person(\"Vijay\", \"Lulla\",         role=\"ctb\"),\n  person(\"Aljaž\", \"Sluga\",         role=\"ctb\"),\n  person(\"Bill\", \"Evans\",          role=\"ctb\"),\n  person(\"Reino\", \"Bruner\",        role=\"ctb\"),\n  person(given=\"@badasahog\",       role=\"ctb\", comment=\"GitHub user\"),\n  person(\"Vinit\", \"Thakur\",        role=\"ctb\"),\n  person(\"Mukul\", \"Kumar\",         role=\"ctb\"),\n  person(\"Ildikó\", \"Czeller\",      role=\"ctb\"),\n  person(\"Manmita\", \"Das\",         role=\"ctb\"),\n  person(\"Tarun\", \"Thammisetty\",   role=\"ctb\"),\n  person(\"Marco\", \"Colombo\",       role=\"ctb\", comment = c(ORCID = \"0000-0001-6672-0623\")),\n  person(\"Tim\", \"Taylor\",          role=\"ctb\", comment = c(ORCID = \"0000-0002-8587-7113\"))\n  )",
-        "NeedsCompilation": "yes",
-        "Packaged": "2026-08-22 18:37:47 UTC; a00932230",
-        "Author": "Tyson Barrett [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-2137-1391>),\n  Matt Dowle [aut],\n  Arun Srinivasan [aut],\n  Jan Gorecki [aut],\n  Michael Chirico [aut] (ORCID: <https://orcid.org/0000-0003-0787-087X>),\n  Toby Hocking [aut] (ORCID: <https://orcid.org/0000-0002-3146-0865>),\n  Benjamin Schwendinger [aut] (ORCID:\n    <https://orcid.org/0000-0003-3315-8114>),\n  Ivan Krylov [aut] (ORCID: <https://orcid.org/0000-0002-0172-3812>),\n  Pasha Stetsenko [ctb],\n  Tom Short [ctb],\n  Steve Lianoglou [ctb],\n  Eduard Antonyan [ctb],\n  Markus Bonsch [ctb],\n  Hugh Parsonage [ctb],\n  Scott Ritchie [ctb],\n  Kun Ren [ctb],\n  Xianying Tan [ctb],\n  Rick Saporta [ctb],\n  Otto Seiskari [ctb],\n  Xianghui Dong [ctb],\n  Michel Lang [ctb],\n  Watal Iwasaki [ctb],\n  Seth Wenchel [ctb],\n  Karl Broman [ctb],\n  Tobias Schmidt [ctb],\n  David Arenburg [ctb],\n  Ethan Smith [ctb],\n  Francois Cocquemas [ctb],\n  Matthieu Gomez [ctb],\n  Philippe Chataignon [ctb],\n  Nello Blaser [ctb],\n  Dmitry Selivanov [ctb],\n  Andrey Riabushenko [ctb],\n  Cheng Lee [ctb],\n  Declan Groves [ctb],\n  Daniel Possenriede [ctb],\n  Felipe Parages [ctb],\n  Denes Toth [ctb],\n  Mus Yaramaz-David [ctb],\n  Ayappan Perumal [ctb],\n  James Sams [ctb],\n  Martin Morgan [ctb],\n  Michael Quinn [ctb],\n  @javrucebo [ctb] (GitHub user),\n  Marc Halperin [ctb],\n  Roy Storey [ctb],\n  Manish Saraswat [ctb],\n  Morgan Jacob [ctb],\n  Michael Schubmehl [ctb],\n  Davis Vaughan [ctb],\n  Leonardo Silvestri [ctb],\n  Jim Hester [ctb],\n  Anthony Damico [ctb],\n  Sebastian Freundt [ctb],\n  David Simons [ctb],\n  Elliott Sales de Andrade [ctb],\n  Cole Miller [ctb],\n  Jens Peder Meldgaard [ctb],\n  Vaclav Tlapak [ctb],\n  Kevin Ushey [ctb],\n  Dirk Eddelbuettel [ctb],\n  Tony Fischetti [ctb],\n  Ofek Shilon [ctb],\n  Vadim Khotilovich [ctb],\n  Hadley Wickham [ctb],\n  Bennet Becker [ctb],\n  Kyle Haynes [ctb],\n  Boniface Christian Kamgang [ctb],\n  Olivier Delmarcell [ctb],\n  Josh O'Brien [ctb],\n  Dereck Mezquita [ctb] (ORCID: <https://orcid.org/0000-0002-9307-6762>),\n  Michael Czekanski [ctb],\n  Dmitry Shemetov [ctb],\n  Nitish Jha [ctb],\n  Joshua Wu [ctb],\n  Iago Giné-Vázquez [ctb],\n  Anirban Chetia [ctb],\n  Doris Amoakohene [ctb],\n  Angel Feliz [ctb],\n  Michael Young [ctb],\n  Mark Seeto [ctb],\n  Philippe Grosjean [ctb],\n  Vincent Runge [ctb],\n  Christian Wia [ctb],\n  Elise Maigné [ctb],\n  Vincent Rocher [ctb],\n  Vijay Lulla [ctb],\n  Aljaž Sluga [ctb],\n  Bill Evans [ctb],\n  Reino Bruner [ctb],\n  @badasahog [ctb] (GitHub user),\n  Vinit Thakur [ctb],\n  Mukul Kumar [ctb],\n  Ildikó Czeller [ctb],\n  Manmita Das [ctb],\n  Tarun Thammisetty [ctb],\n  Marco Colombo [ctb] (ORCID: <https://orcid.org/0000-0001-6672-0623>),\n  Tim Taylor [ctb] (ORCID: <https://orcid.org/0000-0002-8587-7113>)",
-        "Maintainer": "Tyson Barrett <t.barrett88@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2026-08-24 08:40:13 UTC",
-        "Built": "R 4.6.1; x86_64-w64-mingw32; 2026-09-29 12:14:52 UTC; windows",
-        "Archs": "x64",
-        "RemoteType": "standard",
-        "RemotePkgRef": "data.table",
-        "RemoteRef": "data.table",
-        "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha.Version": "1.18.6.1"
-      }
-    },
     "digest": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1851,10 +1818,646 @@
   },
   "files": {
     ".RData": {
-      "checksum": "01ad8173eab95a46a9f124ad753841ba"
+      "checksum": "1d1945477b7168e40dc12cfd73014532"
+    },
+    "docs/app.json": {
+      "checksum": "61ab6e1793a2d7eabada600a255e72f5"
+    },
+    "docs/edit/index.html": {
+      "checksum": "4752dc2dd0b23ac5bd1bbb14f7ace61e"
+    },
+    "docs/index.html": {
+      "checksum": "8ed1a4a14774451f5b5f07811cd64b91"
+    },
+    "docs/shinylive-sw.js": {
+      "checksum": "75b232a0804ddef5f2ac7a1b3749ec5e"
+    },
+    "docs/shinylive/browser-3INZ6I5P.js": {
+      "checksum": "e4ef00cd09973abd2162aa688d390ad1"
+    },
+    "docs/shinylive/browser-EV3UQA2J.js": {
+      "checksum": "932a9cf8be4120946088bec595735841"
+    },
+    "docs/shinylive/chunk-JPKZOFRI.js": {
+      "checksum": "23dcd2dc182facf203b4834da679a4d9"
+    },
+    "docs/shinylive/chunk-UV7YCL3S.js": {
+      "checksum": "b01b36eb25cdeadfba79df04772d235e"
+    },
+    "docs/shinylive/Editor.css": {
+      "checksum": "019f6ae69a2f7269d308d78c1399d758"
+    },
+    "docs/shinylive/Editor.js": {
+      "checksum": "785e553b177d432d675ffdbbcbb3d75b"
+    },
+    "docs/shinylive/load-shinylive-sw.js": {
+      "checksum": "27af506803f303cbc20621b25ab0ccfd"
+    },
+    "docs/shinylive/lzstring-worker.js": {
+      "checksum": "9c64652c9a4fde8e7a3e0216443918c6"
+    },
+    "docs/shinylive/pyodide-worker.js": {
+      "checksum": "80f54d3480c177ba1724ca93c7d78d26"
+    },
+    "docs/shinylive/run-python-blocks.js": {
+      "checksum": "24d1fb00fc81beb91c0acfce4936a1ef"
+    },
+    "docs/shinylive/shinylive.css": {
+      "checksum": "e09fbf2b5e6f630421cabb92daf5ff0a"
+    },
+    "docs/shinylive/shinylive.js": {
+      "checksum": "1d3be393f09967f18dc36f56655d84cd"
+    },
+    "docs/shinylive/SourceSansPro-Regular.otf-PVQ5ZP77.woff2": {
+      "checksum": "0448fda3606e6dc571f763223e78861a"
+    },
+    "docs/shinylive/style-resets.css": {
+      "checksum": "326179a3af08325314a9f92ef53b7b20"
+    },
+    "docs/shinylive/webr/esbuild.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/library.data.gz": {
+      "checksum": "028248d206254eb1a836867eca843f36"
+    },
+    "docs/shinylive/webr/library.js.metadata": {
+      "checksum": "f5c9c49ef87e2231c3119c2ae7396fa9"
+    },
+    "docs/shinylive/webr/libRblas.so": {
+      "checksum": "d637b3f69bf56ae897063115ddd1b8a3"
+    },
+    "docs/shinylive/webr/libRlapack.so": {
+      "checksum": "e490a2bbfd14b1efe8043136d6eab6d3"
+    },
+    "docs/shinylive/webr/packages/askpass/askpass_1.2.1.tgz": {
+      "checksum": "7c769a60b06c6306a1feadc3712ebbe8"
+    },
+    "docs/shinylive/webr/packages/curl/curl_8.0.0.tgz": {
+      "checksum": "6d7a1050c3f147426ad2845b12a814c8"
+    },
+    "docs/shinylive/webr/packages/data.table/data.table_1.18.6.1.tgz": {
+      "checksum": "721dcdc909555a9697efa874013cbbd9"
+    },
+    "docs/shinylive/webr/packages/evaluate/evaluate_1.0.5.tgz": {
+      "checksum": "a2512b26c925426eda02cfa33fe3170e"
+    },
+    "docs/shinylive/webr/packages/highr/highr_0.12.tgz": {
+      "checksum": "e99608d3cf6075e29c6ce2139d2b226e"
+    },
+    "docs/shinylive/webr/packages/httr2/httr2_1.3.0.tgz": {
+      "checksum": "ccd53bd1eb263fd4ef0aa39a983b5090"
+    },
+    "docs/shinylive/webr/packages/jose/jose_2.0.0.tgz": {
+      "checksum": "8cc847faa5fb4e0173f22aad0f8a9856"
+    },
+    "docs/shinylive/webr/packages/knitr/knitr_1.52.tgz": {
+      "checksum": "81d8d086076f1ea11ad24f449508ca70"
+    },
+    "docs/shinylive/webr/packages/litedown/litedown_0.11.tgz": {
+      "checksum": "78d2cdca3e24c2c7c288121f1c5c057f"
+    },
+    "docs/shinylive/webr/packages/markdown/markdown_2.0.tgz": {
+      "checksum": "fe1f8d2c072e912df485e24ffd4e99a3"
+    },
+    "docs/shinylive/webr/packages/metadata.rds": {
+      "checksum": "aaeb50119c7d66b12b550a707c3671bf"
+    },
+    "docs/shinylive/webr/packages/openssl/openssl_2.4.2.tgz": {
+      "checksum": "2e6de846d450dea43aa59c7d961953d7"
+    },
+    "docs/shinylive/webr/packages/RcppTOML/RcppTOML_0.2.3.tgz": {
+      "checksum": "bc9c4ac71bfbb6b90201dc0ceae61b8a"
+    },
+    "docs/shinylive/webr/packages/rmarkdown/rmarkdown_2.32.tgz": {
+      "checksum": "9d46fc88914728f1408d88242ab5dc7d"
+    },
+    "docs/shinylive/webr/packages/rstudioapi/rstudioapi_0.19.0.tgz": {
+      "checksum": "3ba5ad962d7189b4531741ad3c592623"
+    },
+    "docs/shinylive/webr/packages/shinyWidgets/shinyWidgets_0.9.1.tgz": {
+      "checksum": "9651a7ec27faff456b48f7f65daf67e3"
+    },
+    "docs/shinylive/webr/packages/snowflakeauth/snowflakeauth_0.3.1.tgz": {
+      "checksum": "96cc6168c91ad344fa0ec19253ad36dc"
+    },
+    "docs/shinylive/webr/packages/sudoku/sudoku_2.8.tgz": {
+      "checksum": "ba8ef5682066935ff086e12d7cb22939"
+    },
+    "docs/shinylive/webr/packages/sudokuAlt/sudokuAlt_0.2-1.tgz": {
+      "checksum": "bf209b6bb335c09d4dfef1ac57f7d35e"
+    },
+    "docs/shinylive/webr/packages/sys/sys_3.4.3.tgz": {
+      "checksum": "49c5edcf49ee2f75c3b25e6dfb620f62"
+    },
+    "docs/shinylive/webr/packages/tinytex/tinytex_0.61.tgz": {
+      "checksum": "1cb09dc0bade36e38d0a38cc92ba5661"
+    },
+    "docs/shinylive/webr/packages/vctrs/vctrs_0.7.3.tgz": {
+      "checksum": "0987e2b4d65141176b517116bbf51b20"
+    },
+    "docs/shinylive/webr/packages/xfun/xfun_0.61.tgz": {
+      "checksum": "940a2109cb11acf10a942d78e425ee07"
+    },
+    "docs/shinylive/webr/packages/yaml/yaml_2.3.12.tgz": {
+      "checksum": "91a473f8da540bf8ab9ab563ad3a88be"
+    },
+    "docs/shinylive/webr/R.js": {
+      "checksum": "b56860f3b1fef94cfd6d43b5f5c50799"
+    },
+    "docs/shinylive/webr/R.js.bak": {
+      "checksum": "a2c1fbb6b99a3d1e921088c0a3e1cc6a"
+    },
+    "docs/shinylive/webr/R.wasm": {
+      "checksum": "6d5aa9c715047424216553f8104a0194"
+    },
+    "docs/shinylive/webr/repl/App.d.ts": {
+      "checksum": "85ae38423e2436e06a5d111940037f1a"
+    },
+    "docs/shinylive/webr/repl/components/Editor.d.ts": {
+      "checksum": "c91bb292607458e925901b6ecb30ebae"
+    },
+    "docs/shinylive/webr/repl/components/Files.d.ts": {
+      "checksum": "aaa9db291a34c3e967bf40159d59b055"
+    },
+    "docs/shinylive/webr/repl/components/Plot.d.ts": {
+      "checksum": "67bb168a5e908fe0dfed09deadf01408"
+    },
+    "docs/shinylive/webr/repl/components/Share.d.ts": {
+      "checksum": "91af3305924484ce255cf119593a1242"
+    },
+    "docs/shinylive/webr/repl/components/Terminal.d.ts": {
+      "checksum": "4cf99ac8ea14a5f80c0755c55806f2bb"
+    },
+    "docs/shinylive/webr/repl/components/utils.d.ts": {
+      "checksum": "cde22600dd21254b62d3910bdc3c15fd"
+    },
+    "docs/shinylive/webr/tests/packages/webr.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/chan/channel-postmessage.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/chan/proxy-websocket.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/chan/proxy-worker.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/console.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/error.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/mount.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/proxy.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/robj.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/utils.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/webr-main.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/webr-r.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/tests/webR/webr-worker.test.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
+    },
+    "docs/shinylive/webr/vfs/etc/fonts/fonts.conf": {
+      "checksum": "6300427804c4677462c2b187d9e2d3d3"
+    },
+    "docs/shinylive/webr/vfs/etc/ssl/cert.pem": {
+      "checksum": "faefbab80d3a02c37525a9a61cad1663"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/doc.data.gz": {
+      "checksum": "6e4f1250f0247986e614abd745b6c21e"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/doc.js.metadata": {
+      "checksum": "ef1ac85c3e2557029cff53421e7829fd"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/demo.data.gz": {
+      "checksum": "43a01a7817f870a7923cdad0f278387a"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/demo.js.metadata": {
+      "checksum": "95b58b47e37a32ea8314684e8af361c2"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/help.data.gz": {
+      "checksum": "cdf5420a1238992bd711d2993096a996"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/help.js.metadata": {
+      "checksum": "89de13fafb2370e394f2fe111493507a"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/html.data.gz": {
+      "checksum": "f46005335fa3abe9c56ad05a3a979448"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/base/html.js.metadata": {
+      "checksum": "12195de239e48e9791deb4b9aac25631"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/compiler/help.data.gz": {
+      "checksum": "2f29ff4d61b5f72a57053f753c734eb3"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/compiler/help.js.metadata": {
+      "checksum": "9d83779e8a33a35014924858b902463d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/compiler/html.data.gz": {
+      "checksum": "d0cc13663ff27e3ebf3e338f2249029b"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/compiler/html.js.metadata": {
+      "checksum": "b755de7d8ad02082955881baf95671fc"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/datasets/help.data.gz": {
+      "checksum": "0b8c548aa8a629bf85bbd743cc915585"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/datasets/help.js.metadata": {
+      "checksum": "764a0b168096777e80113d55df6cbac1"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/datasets/html.data.gz": {
+      "checksum": "7312b616a5f8e77f5bdf2df8e56072b2"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/datasets/html.js.metadata": {
+      "checksum": "3dee182ce903476f0f127b7478b6a60d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/demo.data.gz": {
+      "checksum": "2116b074886294ac588e5ae5eba2d77d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/demo.js.metadata": {
+      "checksum": "8ea9b04c1821efbade7acded44ea2a46"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/help.data.gz": {
+      "checksum": "697aafa53643ac8f756b22568fb973d6"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/help.js.metadata": {
+      "checksum": "4b88e539bac7ffd31eb93646e8771005"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/html.data.gz": {
+      "checksum": "99521d6c5023896f3ab426ea0eefd5ee"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/graphics/html.js.metadata": {
+      "checksum": "dcfccb95a0cb96bd71a09258ac2019f0"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/afm.data.gz": {
+      "checksum": "5ef0889289004391d36a9f022d1527bf"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/afm.js.metadata": {
+      "checksum": "9cba9a4535baef593b96eed0003bc03d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/demo.data.gz": {
+      "checksum": "d3932cc46d3e13be2e8a087dc33b435d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/demo.js.metadata": {
+      "checksum": "8883d9a5770c131cd37e491a66d5f2d9"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/enc.data.gz": {
+      "checksum": "db9235ed17aee004f2aece20bd458fad"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/enc.js.metadata": {
+      "checksum": "516864001be8080cb4e938bcfeb1366f"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/fonts.data.gz": {
+      "checksum": "10d1388c62c3f0f5d42c2a913a2c7c5f"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/fonts.js.metadata": {
+      "checksum": "7b3727b93d155fd5770e87539d88fa45"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/help.data.gz": {
+      "checksum": "ffc6fb14da1b66f2584ec2bbc9862226"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/help.js.metadata": {
+      "checksum": "b1af724b99b61ad7b08c89b3efedf866"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/html.data.gz": {
+      "checksum": "7dfbc1c1829453fe1ef104040b9b73be"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/html.js.metadata": {
+      "checksum": "c0e4f4eb8568a871aa1bb240d0a8d2a1"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/libs.data.gz": {
+      "checksum": "85ea4d1f9b2015f9ed1a5ccb1df17ce3"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grDevices/libs.js.metadata": {
+      "checksum": "8228cb752a4fc80cc8673180f563b49b"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/doc.data.gz": {
+      "checksum": "06744001672a73f2ff0e5e79bf15d9e2"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/doc.js.metadata": {
+      "checksum": "3ed559af4671fa2fd1e57d3420c4b2de"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/help.data.gz": {
+      "checksum": "7d651aa6ea6e1443297045e7833abe6a"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/help.js.metadata": {
+      "checksum": "122ab879ab5eefcab76513e1de9a6174"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/html.data.gz": {
+      "checksum": "68eaece3d64f9065cd05cf82c6334533"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/grid/html.js.metadata": {
+      "checksum": "14c15bcee9330e0970bdc529d3e32b22"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/methods/help.data.gz": {
+      "checksum": "df58c00c727a984d9476df525e08d683"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/methods/help.js.metadata": {
+      "checksum": "a91a7df10d41c9dc5cc601ca6258d5a3"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/methods/html.data.gz": {
+      "checksum": "e939d530e9f1b2b90b053369820c80d8"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/methods/html.js.metadata": {
+      "checksum": "3a8971fa0dd982df63b2a21b5559aa22"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/parallel.data.gz": {
+      "checksum": "54c4e9b992bd34b2c4b7da7eaeb04bfb"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/parallel.js.metadata": {
+      "checksum": "82ff80b2cf66e5c32373052de78f3dbb"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/splines/help.data.gz": {
+      "checksum": "0555ed913d13a09c1e6944f5212312b2"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/splines/help.js.metadata": {
+      "checksum": "f45ad34a521209a6e903c06f2d607956"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/splines/html.data.gz": {
+      "checksum": "9843002821e47cd9daaf826c392e47f4"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/splines/html.js.metadata": {
+      "checksum": "294c2fc0dae97ba31f5a7d6421527079"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/demo.data.gz": {
+      "checksum": "3556ea735ec5f0840849df6717940358"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/demo.js.metadata": {
+      "checksum": "84af5ae1632e5e6b4a99991e670c8664"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/doc.data.gz": {
+      "checksum": "828e75ab59b9ae6d99f1430f60dd3f75"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/doc.js.metadata": {
+      "checksum": "3f507973adadd8e8475a34be6df10eee"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/help.data.gz": {
+      "checksum": "879d5a07440250174a07dce2b39a9b96"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/help.js.metadata": {
+      "checksum": "137fad6dfbbc98fab49f58a0a1b2b648"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/html.data.gz": {
+      "checksum": "f091687d320d9bf7cec27ab1a7f8960c"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats/html.js.metadata": {
+      "checksum": "fa5559995df07a44e3f08319c91ae918"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats4/help.data.gz": {
+      "checksum": "b35702219f36c09ba112731ade36f2ca"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats4/help.js.metadata": {
+      "checksum": "eacab2a393ad70df1b580d6235fdd2e9"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats4/html.data.gz": {
+      "checksum": "3e766cbbe617f2fd87ebdb44fee0c067"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/stats4/html.js.metadata": {
+      "checksum": "29730f7db98f65cc9077080b88356cd8"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tcltk.data.gz": {
+      "checksum": "24571578184608a2ebe14c9aae162fb0"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tcltk.js.metadata": {
+      "checksum": "750aadf58ee466db556ffb46611a9143"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/help.data.gz": {
+      "checksum": "198e73e8ec98341cf1746b82a9fe3260"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/help.js.metadata": {
+      "checksum": "b046671a2d334963d34e6cb218c32372"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/html.data.gz": {
+      "checksum": "c19055c66518978ae261677e12b228dd"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/html.js.metadata": {
+      "checksum": "9c464930fb5ec144fef89f41c6c7502d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/misc.data.gz": {
+      "checksum": "c257e32b8573720cac55ec9cdc06e6e6"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/tools/misc.js.metadata": {
+      "checksum": "9804189c9c0ee7864921712a2066d2f7"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/translations.data.gz": {
+      "checksum": "36a2f3a77ac6a2dcbfeb1d8c090916f2"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/translations.js.metadata": {
+      "checksum": "9b828c09707a63ae6ec41f119c5877e3"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/translations/DESCRIPTION": {
+      "checksum": "549b1ce41e2809661b0a4405c05fb73e"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/doc.data.gz": {
+      "checksum": "a8b687b65c18ded2d40f69d758573d0e"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/doc.js.metadata": {
+      "checksum": "b1b01dd149d39bfd483aa0f2a37f4b5c"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/help.data.gz": {
+      "checksum": "9ef7fde86e60b4734c8bbe0ebf31e668"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/help.js.metadata": {
+      "checksum": "9d46ab66cf1fa6e18a8250b772e400a7"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/html.data.gz": {
+      "checksum": "fb88fc80efa738790f5f8e101a5b59bb"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/html.js.metadata": {
+      "checksum": "55e39cec65b5ccc733fb3d02253254f3"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/misc.data.gz": {
+      "checksum": "183730820b2f3be5d48afdbcf4d8f2b4"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/utils/misc.js.metadata": {
+      "checksum": "231cffe9bf0512b4d9c176905a34b29a"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/webr/help.data.gz": {
+      "checksum": "12a4298fd0b3650d18e90e46f1bc5291"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/webr/help.js.metadata": {
+      "checksum": "59be9460a897edb32ff6ecc7aabb3eee"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/webr/html.data.gz": {
+      "checksum": "057d3ee0e7b743c0f62a79a623a2fc3d"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/library/webr/html.js.metadata": {
+      "checksum": "b4a0fc9a385b54285990103c70524ac6"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/share.data.gz": {
+      "checksum": "669f485e600be515e38f809721df2bb5"
+    },
+    "docs/shinylive/webr/vfs/usr/lib/R/share.js.metadata": {
+      "checksum": "60924f7d072018e150d2189c40e62005"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSans-Bold.ttf": {
+      "checksum": "6d0d659841547d30c187fedaa041c1de"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSans-BoldItalic.ttf": {
+      "checksum": "ca350bdbae2e15ada9de40239abf1124"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSans-Italic.ttf": {
+      "checksum": "2f538aa27a565c4e66870d6c323e3965"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSans-Regular.ttf": {
+      "checksum": "f03d9a7a3712966ff73ab76313502a6b"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSansMono-Bold.ttf": {
+      "checksum": "e03f7c60925be06f6037ab22ceef6534"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSansMono-Regular.ttf": {
+      "checksum": "76bc9dee5de9d62cf1fff05a85b6d463"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Bold.ttf": {
+      "checksum": "0e20563b2376f2701de3441f74e7340b"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSerif-BoldItalic.ttf": {
+      "checksum": "0932cc79e62fe0b1433c23fe77d1b82a"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Italic.ttf": {
+      "checksum": "461ff1e2545bb8b7575fa3ed83d63973"
+    },
+    "docs/shinylive/webr/vfs/usr/share/fonts/NotoSerif-Regular.ttf": {
+      "checksum": "e31a505e69f592a1a0363f5f983ec199"
+    },
+    "docs/shinylive/webr/vfs/usr/share/gdal.data.gz": {
+      "checksum": "6cefadc7725834aa01a296e04d7f014e"
+    },
+    "docs/shinylive/webr/vfs/usr/share/gdal.js.metadata": {
+      "checksum": "40b6850183b35a195464ad6080f62917"
+    },
+    "docs/shinylive/webr/vfs/usr/share/proj.data.gz": {
+      "checksum": "5b298b8298faef5bcc278e668b28d712"
+    },
+    "docs/shinylive/webr/vfs/usr/share/proj.js.metadata": {
+      "checksum": "2e9339010891c4cb0323d7e6f667ff6b"
+    },
+    "docs/shinylive/webr/vfs/usr/share/udunits.data.gz": {
+      "checksum": "349125110a1ff653abb425fd539f6ef3"
+    },
+    "docs/shinylive/webr/vfs/usr/share/udunits.js.metadata": {
+      "checksum": "6ee5406e67a645a811abd58df92bd11f"
+    },
+    "docs/shinylive/webr/vfs/var/cache/fontconfig/3830d5c3ddfd5cd38a049b759396e72e-le32d8.cache-9": {
+      "checksum": "8d6a48b5de6a8d5ec91fa03dd88e4c16"
+    },
+    "docs/shinylive/webr/vfs/var/cache/fontconfig/CACHEDIR.TAG": {
+      "checksum": "edad2301cde055e29b0d30b8d2f4b724"
+    },
+    "docs/shinylive/webr/webr-worker.js": {
+      "checksum": "0bbc476239df9d40692d05120f59eedb"
+    },
+    "docs/shinylive/webr/webr.cjs": {
+      "checksum": "e2f5110d315b67c2bd73038a75b68d0e"
+    },
+    "docs/shinylive/webr/webr.cjs.map": {
+      "checksum": "f28e1f76115039f32505b33d71f697b2"
+    },
+    "docs/shinylive/webr/webr.js": {
+      "checksum": "604bb6fc441f254fbada6665bb3040d3"
+    },
+    "docs/shinylive/webr/webr.mjs": {
+      "checksum": "695e29b2834a6e2a8727473ded728fc8"
+    },
+    "docs/shinylive/webr/webr.mjs.map": {
+      "checksum": "41b6dca54a54edc5c35719d2e3d1bcc3"
+    },
+    "docs/shinylive/webr/webR/chan/channel-common.d.ts": {
+      "checksum": "7bbf22c81ec0f32b69e04b0cba50f7c7"
+    },
+    "docs/shinylive/webr/webR/chan/channel-postmessage.d.ts": {
+      "checksum": "b19d87a64243042f3597fcae137d5706"
+    },
+    "docs/shinylive/webr/webR/chan/channel-shared.d.ts": {
+      "checksum": "32fcb9def0e6a8393fd1e49fce12d79a"
+    },
+    "docs/shinylive/webr/webR/chan/channel.d.ts": {
+      "checksum": "59f6b4c45677165674207f55c998239a"
+    },
+    "docs/shinylive/webr/webR/chan/message.d.ts": {
+      "checksum": "8f5250cc3c6309f995a4477c575cb0cc"
+    },
+    "docs/shinylive/webr/webR/chan/proxy-websocket.d.ts": {
+      "checksum": "f18f27c72ee9ea28dd5f1be19a540750"
+    },
+    "docs/shinylive/webr/webR/chan/proxy-worker.d.ts": {
+      "checksum": "eaf1ac9eeb900d6ba657e50718b834d9"
+    },
+    "docs/shinylive/webr/webR/chan/queue.d.ts": {
+      "checksum": "88820d2b2237896b22d15da0bb8246ea"
+    },
+    "docs/shinylive/webr/webR/chan/task-common.d.ts": {
+      "checksum": "5bec41a29d2b750b509fcc4f8a1ed1e0"
+    },
+    "docs/shinylive/webr/webR/chan/task-main.d.ts": {
+      "checksum": "f6f605da203f29469a5b4d38b2c0bcce"
+    },
+    "docs/shinylive/webr/webR/chan/task-worker.d.ts": {
+      "checksum": "39661bd0b4fc9903674a93cc0f7e1537"
+    },
+    "docs/shinylive/webr/webR/compat.d.ts": {
+      "checksum": "33eda8bd4455ab1b10c7e580db558f45"
+    },
+    "docs/shinylive/webr/webR/config.d.ts": {
+      "checksum": "512a4e3daca202c877a663e602560cf6"
+    },
+    "docs/shinylive/webr/webR/console.d.ts": {
+      "checksum": "591c23a125e11dcf3dd2e959cfdc06b9"
+    },
+    "docs/shinylive/webr/webR/emscripten.d.ts": {
+      "checksum": "8e805aac244d5091ffa842849bba1140"
+    },
+    "docs/shinylive/webr/webR/error.d.ts": {
+      "checksum": "f6ab6e58de6eb63a7d7b16aaa48be714"
+    },
+    "docs/shinylive/webr/webR/mount.d.ts": {
+      "checksum": "87cfc3dcd53332f7f0e51e61ad39f177"
+    },
+    "docs/shinylive/webr/webR/payload.d.ts": {
+      "checksum": "52109eb8c8b1c9f6320574a40c62da18"
+    },
+    "docs/shinylive/webr/webR/proxy.d.ts": {
+      "checksum": "60050c04a4a7bef595d0b8fe6477ca36"
+    },
+    "docs/shinylive/webr/webR/robj-main.d.ts": {
+      "checksum": "d01b9ab014e5b5d44f1b52bf6ab177e0"
+    },
+    "docs/shinylive/webr/webR/robj-worker.d.ts": {
+      "checksum": "2c4c28be8e31f3035154d2704548b0c8"
+    },
+    "docs/shinylive/webr/webR/robj.d.ts": {
+      "checksum": "36b1c032d91beb66132e8e21fc21865c"
+    },
+    "docs/shinylive/webr/webR/utils-r.d.ts": {
+      "checksum": "8dd57576c21644349c45e562ce9f1f4a"
+    },
+    "docs/shinylive/webr/webR/utils.d.ts": {
+      "checksum": "af64d19bbd0b291a7c6c91923543135c"
+    },
+    "docs/shinylive/webr/webR/webr-chan.d.ts": {
+      "checksum": "25f650ad6c1c019b028f04f6cbf34b72"
+    },
+    "docs/shinylive/webr/webR/webr-main.d.ts": {
+      "checksum": "fef64b797e38983a0740e6c545ad296c"
+    },
+    "docs/shinylive/webr/webR/webr-worker.d.ts": {
+      "checksum": "e2ebd7ddedcadeeadbf819c35985c768"
     },
     "global.R": {
-      "checksum": "c593b39adacafff6df48f601258b7015"
+      "checksum": "a34e3ad9b6bedcd6ab0dfa3fba074221"
     },
     "instructions.nb.html": {
       "checksum": "82a7e49a0ee22fc92e70c742ec993cd2"
@@ -1865,17 +2468,20 @@
     "Jugar.R": {
       "checksum": "5ff06a4854e34a2ed78214ea8b937022"
     },
+    "manifest - copia.json": {
+      "checksum": "151bc5bc8cde6c1efd40baca144af750"
+    },
     "README.html": {
       "checksum": "dcfd8b021d99e108f8d070a82dbf147d"
     },
     "README.md": {
-      "checksum": "f983225caea8cc868f2bbec8dc324275"
+      "checksum": "c28019015821e5f9b56011c82bdb0aad"
     },
     "server.R": {
-      "checksum": "67c1273352092afdc26b61642ccda805"
+      "checksum": "83cd12307b4d51f52c6629111dfce073"
     },
     "ui.R": {
-      "checksum": "f39db15e186dda0479fea6fd0803ad60"
+      "checksum": "aacd2960b23454c0b567dbb09d9822c1"
     }
   },
   "users": null

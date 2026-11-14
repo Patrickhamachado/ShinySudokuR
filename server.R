@@ -4,7 +4,7 @@
 library(shiny)
 library(shinyWidgets)
 library(sudoku)
-library(data.table)
+# library(data.table)
 
 
 # Dificultad:
@@ -23,227 +23,177 @@ library(data.table)
 # Shiny Server ------------------------------------------------------------
 
 shinyServer(function(input, output, session) {
-    
-    # Inicialización valores reactivos ----
-    sudoku_problema <- reactiveVal(matrix(0, 9, 9))
-    sudoku_solucion <- reactiveVal(matrix(0, 9, 9))
-    sudoku_posibles <- reactiveVal(matrix(0, 9, 9))
-    sudoku_resuelto <- reactiveVal(FALSE)
-    faltan <- reactiveVal(rep(9, 9))
-    
-    
-    # observeEvent plot_click ----
-    observeEvent(input$plot_click, {
-      
-      # Si ya se resolvió el juego, mostrar pantalla inicial
-      if(sudoku_resuelto()) {
-        sudoku_problema(matrix(0, 9, 9))
-        sudoku_solucion(matrix(0, 9, 9))
-        sudoku_posibles(matrix(0, 9, 9))
-        sudoku_resuelto(FALSE)
-      }
-      
-      llenar_con <- as.integer(isolate({input$fill}))
-      llenar_fila <- 10 - round((input$plot_click$y + 1)/ 3)
-      llenar_columna <- round((input$plot_click$x + 1)/ 3)
-      definitivo <- isolate({input$marking})
-      problema <- isolate(sudoku_problema())
-      solucion <- isolate(sudoku_solucion())
-      solucion_actual <- solucion
-      posibles <- isolate(sudoku_posibles())
-      posibles_actual <- posibles
-      
-      # print(paste(ifelse(definitivo, 'Llenar con:', 'Marcar con:'), 
-      #             llenar_con, "en", llenar_fila, ",", llenar_columna))
+  
+  ## Inicialización valores reactivos ----
+  sudoku_solucion <- reactiveVal(
+    Sudoku$new(
+      estado = data.frame(solucion = 0, problema = FALSE, posibles = 0,
+                          filas = 0, columnas = 0
 
-      # Actualizar solucion o posibles
-      if (!is.na(llenar_fila) & !is.na(llenar_columna) &
-          (llenar_fila > 0) & (llenar_fila < 10) &
-          (llenar_columna > 0) & (llenar_columna < 10)
-      ) {
-        # Revisar si es una celda modificable
-        if (problema[llenar_fila, llenar_columna] == 0) {
-          
-          if (definitivo) {
-            
-            # Editar la matriz de números fijos
-            if (solucion[llenar_fila, llenar_columna] == llenar_con) {
-              solucion[llenar_fila, llenar_columna] <- 0
-            } else {
-              solucion[llenar_fila, llenar_columna] <- llenar_con
-            }
-            
-            # Actualizar el valor reactivo si hubo cambios
-            if(!identical(solucion_actual, solucion)) {
-              sudoku_solucion(solucion)
-              faltan(fx_faltan(solucion))
-               
-              # Corroborar si ya está solucionado o está vacío
-              suma_columnas <- colSums(solucion)
-              suma_filas <- rowSums(solucion)
-              terminado <- (sum(colSums(solucion) == 45) + 
-                              sum(rowSums(solucion) == 45)) == 18
-              
-              # Mensaje si Sudoku terminado
-              if(terminado & !sudoku_resuelto()) {
-                
-                sendSweetAlert(
-                  # session = session,
-                  title = "Congrats !!",
-                  text = "You have solved the Sudoku just fine!",
-                  type = "success"
-                )
-                sudoku_resuelto(TRUE)
-              }
-            }
-            
-          } else {
-            if(solucion[llenar_fila, llenar_columna] == 0) {
-              
-              # Editar la matriz de números opcionados
-              actual <- as.integer(
-                intToBits(posibles[llenar_fila, llenar_columna])[1:9])
-              actual[llenar_con] <- ! actual[llenar_con]
-              actual <- sum(2 ^ ((1:9)[as.logical(actual)] - 1))
-              
-              posibles[llenar_fila, llenar_columna] <- actual
-              
-              # Actualizar el valor reactivo si hubo cambios
-              if(!identical(posibles_actual, posibles)) {
-                sudoku_posibles(posibles)
-              } 
-              
-            } # Fin marcar si no hay número fijo
-            
-          } # Fin cambio en las matrices
-          
-        }
-        
-      }
+                          ),
+      # estado = fx_iniciar_dt(16, matrix(0, 9, 9)),
+      deshacer = data.frame(), # (Deshacer = 1:3),
+      rehacer = data.frame(), # (Rehacer = 4:6)
+      no_movimientos = 0L,
+      no_rehacer = 0L,
+      terminado = FALSE,
+      faltan = rep(9L, 9)
+    ))
+  
+  
+  ## Plot output ----
+  output$plotSudoku <- renderPlot(
+    width = 498, height = 448,
+    {
+      # sudoku <- sudoku_solucion()$copy()
       
-    })
-    
-    # Plot output ----
-    output$plotSudoku <- renderPlot(
-        width = 498, height = 448,
-        {
-        # Llamar función Plot
-        fx_plot_sudoku(sudoku_problema(), sudoku_solucion(), sudoku_posibles(), 
-                       sudoku_resuelto(), as.integer(input$fill))
-        
+      # Llamar función Plot
+      sudoku_solucion()$plotSudoku(as.integer(input$fill))
+      
+      
     }) # Fin renderPlot output
+  
+  
+  ## observeEvent play button ----
+  observeEvent(input$play, {
     
+    sudoku <- sudoku_solucion()$copy()
     
-    # Plot UI para detectar el click ----
-    output$plotui <- renderUI({
-        plotOutput("plotSudoku",
-                   click = "plot_click"
-        )
-    })
+    # Revisar si ya se empezó a resolver el juego
+    solucion_iniciada <- sum(sudoku$estado$solucion[!sudoku$estado$problema]) > 0
+    posibles_iniciados <- sum(sudoku$estado$posibles[!sudoku$estado$problema]) > 0
+    problema_vacio <- sum(sudoku$estado$solucion) == 0
     
-    
-    # Keyboard action ----
-    observeEvent(input$myKeyboard, {
-        newKeyboard <- input$myKeyboard[1]
-        
-        # cat("\nTecla: ", newKeyboard)
-        
-        # Shift y control para cambiar entre Fill / Mark
-        if (newKeyboard == 16 | newKeyboard == 17) {
-            
-            # cat("\nTecla:", ifelse(newKeyboard == 16, 'Shift', 'Ctrl'))
-            bitLlenar <- isolate({input$marking})
-            updateSwitchInput(session,
-                              inputId = "marking",
-                              value = !bitLlenar)
-
-        } else {
-            # Números entre 1 y 9 para seleccionar
-            if (newKeyboard > 48 & newKeyboard < 58) {
-                
-                # cat("\nNúmero:", newKeyboard - 48)
-                updateRadioGroupButtons(session = session, 
-                                        inputId = "fill",
-                                   selected = as.character(newKeyboard - 48)
-                )
-            }
-        }
-        
-    })
-    
-    
-    # observeEvent play button ----
-    observeEvent(input$play, {
+    if((isFALSE(sudoku$terminado) & (solucion_iniciada | posibles_iniciados)) &
+       !problema_vacio) {
       
-      # print('sudoku_problema antes:')
-      # print(sudoku_problema())
-      
-      # Revisar si ya se empezó a resolver el juego
-      solucion_inicida <- !identical(sudoku_problema(), sudoku_solucion())
-      posibles_iniciados <- !identical(sudoku_posibles(), matrix(0, 9, 9))
-      problema_vacio <- identical(sudoku_problema(), matrix(0, 9, 9))
-      if((isFALSE(sudoku_resuelto()) & (solucion_inicida | posibles_iniciados)) &
-         !problema_vacio) {
-        
-        confirmSweetAlert(
-          # session = session,
-          inputId = "confirmar_nuevo",
-          title = "New game",
-          text = "Are you sure you want to lose your progress and start a new game?",
-          type = "warning",
-          btn_labels = c("Cancel", "Yes"),
-          btn_colors = c("#03c7e8", "#03c7e8"),
-          allowEscapeKey = TRUE
-        )
-        
-      } else {
-        # Inicialización de los datos del nuevo juego 
-        sudoku_problema(generateSudoku(Nblank = as.integer(input$dificultad)))
-        sudoku_solucion(sudoku_problema())
-        sudoku_posibles(matrix(0, 9, 9))
-        sudoku_resuelto(FALSE)
-        faltan(fx_faltan(sudoku_problema()))
-        showNotification("Enjoy your Sudoku!", type = "message")
-        # shinyWidgets::show_toast("Enjoy your Sudoku!", type = "success")
-        
-        # print("Solución:")
-        # solveSudoku(sudoku_problema())
-      }
-    })
-    
-    # observeEvent confirmar_nuevo ----
-    observeEvent(input$confirmar_nuevo, {
-      
-      if (isTRUE(input$confirmar_nuevo)) {
-        # Inicialización de los datos del nuevo juego 
-        sudoku_problema(generateSudoku(Nblank = as.integer(input$dificultad)))
-        sudoku_solucion(sudoku_problema())
-        sudoku_posibles(matrix(0, 9, 9))
-        sudoku_resuelto(FALSE)
-        faltan(fx_faltan(sudoku_problema()))
-        showNotification("Enjoy your new Sudoku!", type = "message")
-      }
-      
-    })
-    
-    # observe faltan() ----
-    observe({
-      
-      rotulos <- paste0(1:9, " (", faltan(), ")")
-      valor <- isolate(input$fill)
-      
-      updateRadioGroupButtons(
-        session = session,
-        inputId = "fill",
-        label = "Fill/mark with:",
-        # choices = 1:9,
-        selected = valor, 
-        status = "primary",
-        checkIcon = list(yes = icon("ok", lib = "glyphicon")),
-        choiceNames = rotulos,
-        choiceValues = 1:9
+      confirmSweetAlert(
+        # session = session,
+        inputId = "confirmar_nuevo",
+        title = "New game",
+        text = "Are you sure you want to lose your progress and start a new game?",
+        type = "warning",
+        btn_labels = c("Cancel", "Yes"),
+        btn_colors = c("#03c7e8", "#03c7e8"),
+        allowEscapeKey = TRUE
       )
       
-    })
+    } else {
+      # Inicialización de los datos del nuevo juego 
+      sudoku$iniciar(dificultad = as.integer(input$dificultad))
+      sudoku_solucion(sudoku)
+      
+      # sudoku_problema(generateSudoku(Nblank = as.integer(input$dificultad)))
+      # sudoku_solucion(sudoku_problema())
+      # sudoku_posibles(matrix(0, 9, 9))
+      # sudoku_resuelto(FALSE)
+      # faltan(fx_faltan(sudoku_problema()))
+      
+      showNotification("Enjoy your Sudoku!", type = "message")
+      # shinyWidgets::show_toast("Enjoy your Sudoku!", type = "success")
+      
+      # print("Solución:")
+      # solveSudoku(sudoku_problema())
+    }
     
+    
+  })
+  
+  
+  ## observeEvent confirmar_nuevo ----
+  observeEvent(input$confirmar_nuevo, {
+    
+    if (isTRUE(input$confirmar_nuevo)) {
+      
+      # Inicialización de los datos del nuevo juego 
+      sudoku <- sudoku_solucion()$copy()
+      sudoku$iniciar(dificultad = as.integer(input$dificultad))
+      sudoku_solucion(sudoku)
+      
+      # Inicialización de los datos del nuevo juego 
+      # sudoku_problema(generateSudoku(Nblank = as.integer(input$dificultad)))
+      # sudoku_solucion(sudoku_problema())
+      # sudoku_posibles(matrix(0, 9, 9))
+      # sudoku_resuelto(FALSE)
+      # faltan(fx_faltan(sudoku_problema()))
+
+      showNotification("Enjoy your new Sudoku!", type = "message")
+      
+    }
+    
+  })
+  
+  
+  ## observeEvent plot_click ----
+  observeEvent(input$plot_click, {
+    
+    llenar_con <- as.integer(isolate({input$fill}))
+    llenar_fila <- 10 - round((input$plot_click$y + 1)/ 3)
+    llenar_columna <- round((input$plot_click$x + 1)/ 3)
+    definitivo <- isolate({input$marking})
+    
+    # print(paste("Numero:", llenar_con, "- Posicion: ", llenar_fila, ",",
+    #       llenar_columna, ifelse(definitivo, "- Llenar", "- Marcar")
+    #       ))
+    
+    sudoku <- sudoku_solucion()$copy()
+    sudoku$play(llenar_con, llenar_fila, llenar_columna, definitivo)
+    sudoku_solucion(sudoku)
+    
+ 
+  })
+  
+  
+  ## Keyboard action ----
+  observeEvent(input$myKeyboard, {
+    newKeyboard <- input$myKeyboard[1]
+    
+    # cat("\nTecla: ", newKeyboard)
+    
+    # Shift y control para cambiar entre Fill / Mark
+    if (newKeyboard == 16 | newKeyboard == 17) {
+      
+      # cat("\nTecla:", ifelse(newKeyboard == 16, 'Shift', 'Ctrl'))
+      bitLlenar <- isolate({input$marking})
+      updateSwitchInput(session,
+                        inputId = "marking",
+                        value = !bitLlenar)
+      
+    } else {
+      # Números entre 1 y 9 para seleccionar
+      if (newKeyboard > 48 & newKeyboard < 58) {
+        
+        # cat("\nNúmero:", newKeyboard - 48)
+        updateRadioGroupButtons(session = session, 
+                                inputId = "fill",
+                                selected = as.character(newKeyboard - 48)
+        )
+      }
+    }
+    
+  })
+  
+  
+  ## observe sudoku_solucion(): faltantes ----
+  observe({
+    
+    faltantes <- sudoku_solucion()$faltan
+    
+    rotulos <- paste0(1:9, " (", faltantes, ")")
+    valor <- isolate(input$fill)
+    
+    updateRadioGroupButtons(
+      session = session,
+      inputId = "fill",
+      label = "Fill/mark with:",
+      # choices = 1:9,
+      selected = valor, 
+      status = "primary",
+      checkIcon = list(yes = icon("ok", lib = "glyphicon")),
+      choiceNames = rotulos,
+      choiceValues = 1:9
+    )
+    
+  })
+  
 }) # Fin server
