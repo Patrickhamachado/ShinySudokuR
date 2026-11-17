@@ -795,7 +795,8 @@ Sudoku <- setRefClass(
                      col = color_fondo, border = NA)
               }
               
-              text(xxx, yyy, bit_posible, font = 1, cex = 0.9)
+              text(xxx, yyy, bit_posible, font = 1, cex = 1.1)
+              
             }
           }
         }

@@ -24,6 +24,8 @@ library(sudoku)
 
 shinyServer(function(input, output, session) {
   
+  # bs_themer()
+  
   ## Inicialización valores reactivos ----
   sudoku_solucion <- reactiveVal(
     Sudoku$new(

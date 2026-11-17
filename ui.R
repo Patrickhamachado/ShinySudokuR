@@ -85,9 +85,10 @@ page_navbar(
             # )
             
             
-            ), # Fin panel Game 
+            ), # Fin panel Game
   
   nav_panel("?", includeMarkdown("instructions.Rmd")),
   title = strong("Shiny Sudoku"), 
   id = "navbar", 
+  theme = bs_theme(version = 5, bootswatch = "flatly")
 ) 
