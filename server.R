@@ -34,8 +34,8 @@ shinyServer(function(input, output, session) {
 
                           ),
       # estado = fx_iniciar_dt(16, matrix(0, 9, 9)),
-      deshacer = data.frame(), # (Deshacer = 1:3),
-      rehacer = data.frame(), # (Rehacer = 4:6)
+      movimientos = data.frame(), # (Deshacer = 1:3),
+      mov_rehacer = data.frame(), # (Rehacer = 4:6)
       no_movimientos = 0L,
       no_rehacer = 0L,
       terminado = FALSE,
@@ -146,6 +146,44 @@ shinyServer(function(input, output, session) {
   })
   
   
+  ## observeEvent btn_deshacer ----
+  observeEvent(input$btn_deshacer, {
+    
+    sudoku <- sudoku_solucion()$copy()
+    
+    if (sudoku$no_movimientos > 0) {
+      sudoku$deshacer()
+      sudoku_solucion(sudoku)
+    }
+    
+    # print(paste("-------- Comando Deshacer - Historial de movimientos:", 
+    #             sudoku$no_movimientos))
+    # print(sudoku$movimientos)
+    # print(paste("Movimientos a rehacer:", sudoku$no_rehacer))
+    # print(sudoku$mov_rehacer)
+    
+  })
+  
+  
+  ## observeEvent btn_rehacer ----
+  observeEvent(input$btn_rehacer, {
+    
+    sudoku <- sudoku_solucion()$copy()
+    
+    if (nrow(sudoku$mov_rehacer) > 0) {
+      sudoku$rehacer()
+      sudoku_solucion(sudoku)
+    }
+    
+    # print(paste("-------- Comando Rehacer - Historial de movimientos:", 
+    #             sudoku$no_movimientos))
+    # print(sudoku$movimientos)
+    # print(paste("Movimientos a rehacer:", sudoku$no_rehacer))
+    # print(sudoku$mov_rehacer)
+    
+  })
+  
+  
   ## Keyboard action ----
   observeEvent(input$myKeyboard, {
     newKeyboard <- input$myKeyboard[1]
@@ -179,6 +217,7 @@ shinyServer(function(input, output, session) {
   ## observe sudoku_solucion(): faltantes ----
   observe({
     
+    # Actualización de la indicación de faltantes
     faltantes <- sudoku_solucion()$faltan
     
     rotulos <- paste0(1:9, " (", faltantes, ")")
@@ -195,6 +234,22 @@ shinyServer(function(input, output, session) {
       choiceNames = rotulos,
       choiceValues = 1:9
     )
+    
+    # Habilitar botón de deshacer
+    hab_deshacer <- sudoku_solucion()$no_movimientos > 0
+    if (hab_deshacer) {
+      updateActionButton(inputId = "btn_deshacer", disabled = FALSE)
+    } else {
+      updateActionButton(inputId = "btn_deshacer", disabled = TRUE)
+    }
+    
+    # Habilitar botón de rehacer
+    hab_rehacer <- sudoku_solucion()$no_rehacer > 0
+    if (hab_rehacer) {
+      updateActionButton(inputId = "btn_rehacer", disabled = FALSE)
+    } else {
+      updateActionButton(inputId = "btn_rehacer", disabled = TRUE)
+    }
     
   })
   

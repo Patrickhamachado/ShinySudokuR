@@ -70,19 +70,38 @@ page_navbar(
             
             # Plot Sudoku
             # uiOutput("plotui")
-            plotOutput("plotSudoku", click = "plot_click")
+            fluidRow(plotOutput("plotSudoku", click = "plot_click")),
             
-            # Pruebas de reactividad ----
-            # Botón mas1
-            # actionBttn("mas1", label = "+1",
-            #            icon = icon("play-circle"),
-            #            style = "fill"
-            # ),
-            # Botón mas0
-            # actionBttn("mas0", label = "==",
-            #            icon = icon("play-circle"),
-            #            style = "fill"
-            # )
+            br(),
+            
+            # Botones de Deshacer y Rehacer ----
+            fluidRow(
+              column(width = 2, offset = 2,
+                     # Botón Undo
+                     actionButton("btn_deshacer", label = "Undo",
+                                icon = icon("arrow-rotate-left"),
+                                class = "btn-primary"
+                     )
+                     # actionBttn("btn_deshacer", label = "Undo",
+                     #            icon = icon("arrow-rotate-left"),
+                     #            style = "fill"
+                     # )
+              ),
+              
+              column(width = 2, 
+                     # Botón Redo
+                     # actionBttn("btn_rehacer", label = "Redo",
+                     #            icon = icon("arrow-rotate-right"),
+                     #            style = "fill"
+                     # )
+                     actionButton("btn_rehacer", label = "Redo",
+                                  icon = icon("arrow-rotate-right"),
+                                  class = "btn-primary"
+                     )
+              )
+              
+            )
+            
             
             
             ), # Fin panel Game

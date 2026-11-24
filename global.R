@@ -522,8 +522,8 @@ Sudoku <- setRefClass(
   Class = "Sudoku",
   fields = c(
     estado = "data.frame",
-    deshacer = "data.frame",
-    rehacer = "data.frame",
+    movimientos = "data.frame",
+    mov_rehacer = "data.frame",
     no_movimientos = "integer",
     no_rehacer = "integer",
     terminado = "logical",
@@ -534,13 +534,13 @@ Sudoku <- setRefClass(
     show = function() {
       cat("Estado del Sudoku: \n")
       print(estado[estado$solucion > 0, ])
-      if (nrow(deshacer) > 1) {
-        cat("Jugadas para deshacer: \n")
-        print(deshacer)
+      if (nrow(movimientos) > 1) {
+        cat("Movimientos realizados: \n")
+        print(movimientos)
       }
-      if (nrow(rehacer) > 1) {
+      if (nrow(mov_rehacer) > 1) {
         cat("Jugadas para rehacer: \n")
-        print(rehacer)
+        print(mov_rehacer)
       }
     },
     
@@ -574,7 +574,7 @@ Sudoku <- setRefClass(
           cambios(llenar_con, llenar_fila, llenar_columna, definitivo)
           
           # Último movimiento
-          ultimo <- deshacer[deshacer$movimiento == no_movimientos, ]
+          ultimo <- movimientos[movimientos$movimiento == no_movimientos, ]
           
           # Actualizar estado con base R
           estado$solucion[idx] <<- ultimo$solucion
@@ -645,7 +645,121 @@ Sudoku <- setRefClass(
         )
       }
       
-      deshacer <<- rbind(deshacer, mov)
+      # Actualizar historial de movimientos
+      movimientos <<- rbind(movimientos, mov)
+      mov_rehacer <<- mov_rehacer[0, ]
+      no_rehacer <<- 0L
+      
+    },
+    
+    deshacer = function() {
+      mov_deshacer <- movimientos[movimientos$movimiento == no_movimientos, ]
+      
+      for (jugada in 1:nrow(mov_deshacer)) {
+        
+        llenar_fila <- mov_deshacer$filas[jugada]
+        llenar_columna <- mov_deshacer$columnas[jugada]
+        
+        # Índice de la celda a modificar
+        idx <- which(
+          estado$filas == llenar_fila &
+            estado$columnas == llenar_columna
+        )
+        
+        # Jugada fija
+        if (mov_deshacer$solucion[jugada] != mov_deshacer$solucion_ant[jugada]) {
+          # print(
+          #   paste("Devolver jugada:", llenar_fila, ",", 
+          #         llenar_columna, "->", 
+          #         mov_deshacer$solucion_ant[jugada]
+          #   ))
+          
+          # Devolver jugada
+          estado$solucion[idx] <<- mov_deshacer$solucion_ant[jugada]
+          
+        }
+        
+        # Jugada posible
+        if (mov_deshacer$posibles[jugada] != mov_deshacer$posibles_ant[jugada]) {
+          # print(
+          #   paste("Devolver posible:", llenar_fila, ",", 
+          #         llenar_columna, "->", 
+          #         mov_deshacer$posibles_ant[jugada]
+          #   ))
+          
+          # Devolver posible
+          estado$posibles[idx] <<- mov_deshacer$posibles_ant[jugada]
+          
+        }
+        
+      } # Fin del for
+      
+      # Actualizar historial de movimientos
+      movimientos <<- movimientos[movimientos$movimiento != no_movimientos, ]
+      no_movimientos <<- no_movimientos - 1L
+      mov_rehacer <<- rbind(mov_rehacer, mov_deshacer)
+      no_rehacer <<- no_rehacer + 1L
+      
+      # Actualizar errores y faltantes
+      revisar()
+      
+    },
+    
+    rehacer = function() {
+      movimiento <- min(mov_rehacer$movimiento)
+      mov_rehacer_temp <- mov_rehacer[mov_rehacer$movimiento == movimiento, ]
+      
+      for (jugada in 1:nrow(mov_rehacer_temp)) {
+        
+        llenar_fila <- mov_rehacer_temp$filas[jugada]
+        llenar_columna <- mov_rehacer_temp$columnas[jugada]
+        
+        # Índice de la celda a modificar
+        idx <- which(
+          estado$filas == llenar_fila &
+            estado$columnas == llenar_columna
+        )
+        
+        # Jugada fija
+        if (mov_rehacer_temp$solucion[jugada] != mov_rehacer_temp$solucion_ant[jugada]) {
+          # print(
+          #   paste("Devolver jugada:", llenar_fila, ",", 
+          #         llenar_columna, "->", 
+          #         mov_deshacer$solucion_ant[jugada]
+          #   ))
+          
+          # Devolver jugada
+          estado$solucion[idx] <<- mov_rehacer_temp$solucion[jugada]
+          
+        }
+        
+        # Jugada posible
+        if (mov_rehacer_temp$posibles[jugada] != mov_rehacer_temp$posibles_ant[jugada]) {
+          # print(
+          #   paste("Devolver posible:", llenar_fila, ",", 
+          #         llenar_columna, "->", 
+          #         mov_deshacer$posibles_ant[jugada]
+          #   ))
+          
+          # Devolver posible
+          estado$posibles[idx] <<- mov_rehacer_temp$posibles[jugada]
+          
+        }
+        
+      } # Fin del for
+      
+      # Actualizar historial de movimientos
+      movimientos <<- rbind(movimientos, mov_rehacer_temp)
+      no_movimientos <<- no_movimientos + 1L
+      mov_rehacer <<- mov_rehacer[mov_rehacer$movimiento != movimiento, ]
+      no_rehacer <<- ifelse(nrow(mov_rehacer) > 0,
+                            max(mov_rehacer$movimiento), 
+                            0L)
+        
+      
+      # Actualizar errores y faltantes
+      revisar()
+      
     },
     
     revisar = function() {
@@ -718,8 +832,8 @@ Sudoku <- setRefClass(
       }
         
       estado <<- base
-      deshacer <<- data.frame()
-      rehacer <<- data.frame()
+      movimientos <<- data.frame()
+      mov_rehacer <<- data.frame()
       no_movimientos <<- 0L
       no_rehacer <<- 0L
       terminado <<- FALSE
@@ -802,23 +916,23 @@ Sudoku <- setRefClass(
         }
       }
     }
+    
   )
 )
 
 
-# Test de la clase R6 
+# Test de la clase R6 ----
 # rm(sudoku1, sudoku2)
+# graphics.off()
 # sudoku1 <- Sudoku$new(
 #   estado = data.frame(solucion = 0, problema = FALSE, posibles = 0),
-#   deshacer = data.frame(), # (Deshacer = 1:3),
-#   rehacer = data.frame(), # (Rehacer = 4:6)
+#   movimientos = data.frame(), # (movimientos = 1:3),
+#   mov_rehacer = data.frame(), # (mov_rehacer = 4:6)
 #   no_movimientos = 0L,
 #   no_rehacer = 0L,
 #   terminado = FALSE,
 #   faltan = rep(9L, 9)
 # )
-# 
-# sudoku1$plotSudoku()
 # 
 # sudoku1$iniciar(16)
 # sudoku1$plotSudoku()
@@ -829,15 +943,9 @@ Sudoku <- setRefClass(
 # sudoku1$play(7, 2, 1, FALSE)
 # sudoku1$play(8, 3, 1, TRUE)
 # sudoku1$plotSudoku()
-# 
-# 
-# sudoku2$plotSudoku()
-# identical(sudoku1, sudoku2)
-# 
-# # 
-# sudoku1$iniciar(16)
-# sudoku1$estado
-# 
-# sudoku1$iniciar(16, vacio = TRUE)
-# sudoku1$estado
 
+# sudoku1$deshacer()
+# sudoku1$plotSudoku()
+# 
+# sudoku1$rehacer()
+# sudoku1$plotSudoku()
